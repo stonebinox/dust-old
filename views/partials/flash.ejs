@@ -1,0 +1,40 @@
+<% if (messages.errors) { %>
+  <div class="alert alert-danger alert-with-icon" data-notify="container">
+    <div class="container">
+      <div class="alert-wrapper">
+        <button aria-label="Close" class="close" data-dismiss="alert" type="button"><i class="nc-icon nc-simple-remove"></i></button>
+        <% messages.errors.forEach((error) => { %>
+          <div class="message">
+            <i class="nc-icon nc-bell-55"></i> <%- error.msg %>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+<% } %>
+
+<% if (messages.info) { %>
+  <div class="alert alert-info alert-dismissible fade show">
+    <button type="button" data-dismiss="alert" class="close">
+      <i class="fa fa-times-circle-o"></i>
+    </button>
+    <% messages.info.forEach((info) => { %>
+      <div><%- info.msg %></div>
+    <% }) %>
+  </div>
+<% } %>
+
+<% if (messages.success) { %>
+  <div class="alert alert-success alert-with-icon" data-notify="container">
+    <div class="container">
+      <div class="alert-wrapper">
+        <button aria-label="Close" class="close" data-dismiss="alert" type="button"><i class="nc-icon nc-simple-remove"></i></button>
+        <% messages.success.forEach((success) => { %>
+          <div class="message">
+            <i class="nc-icon nc-bell-55"></i> <%- success.msg %>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+<% } %>

@@ -1,0 +1,35 @@
+<nav class="navbar navbar-toggleable-md fixed-top <%- typeof fixedHeader !== 'undefined' ? '' : 'navbar-transparent' %>" <%- typeof animateNavbar === 'undefined' ? '' : 'color-on-scroll="500"' %>>
+  <div class="container">
+    <div class="navbar-translate">
+      <button aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right navbar-burger" data-target="#navbarToggler" data-toggle="collapse" type="button">
+        <span class="navbar-toggler-bar"></span>
+        <span class="navbar-toggler-bar"></span>
+        <span class="navbar-toggler-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">DuskHQ</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarToggler">
+      <ul class="navbar-nav ml-auto">
+        <% if (user) { %>
+          <li class="nav-item dropdown">
+              <button href="#paper-kit" class="dropdown-toggle btn btn-round btn-danger" data-toggle="dropdown">
+                <%- user.profile.name || user.email || user.id %> <b class="caret"></b>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
+                  <li class="dropdown-item"><a href="/settings">Settings</a></li>
+                  <div class="dropdown-divider"></div>
+                  <li class="dropdown-item"><a href="/logout">Logout</a></li>
+              </ul>
+          </li>
+        <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/signup">Signup</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-danger btn-round" href="/login">Login</a>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>

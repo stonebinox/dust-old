@@ -1,0 +1,26 @@
+<% layout('layout') -%>
+
+<div class="wrapper">
+  <div class="page-header" style="background-image: url('/img/login-image.jpg');">
+    <%- partial('partials/flash') %>
+    <div class="filter"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 offset-lg-4 col-sm-6 offset-sm-3">
+          <div class="card card-register">
+            <h3 class="title">Password Reset</h3>
+            <form class="register-form" method="POST">
+              <input type="hidden" name="_csrf" value="<%- _csrf %>"/>
+              <label>Email</label>
+              <input name="email" class="form-control" placeholder="Email" type="text">
+              <button class="btn btn-danger btn-block btn-round">Reset</button>
+            </form>
+            <div class="forgot">
+              <a class="btn btn-link btn-danger" href="/login">Already have an account?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

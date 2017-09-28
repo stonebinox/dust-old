@@ -1,0 +1,126 @@
+.home-map {
+  height: calc(100vh - 71px);
+  width: 100vw;
+}
+
+.map-container {
+  height: calc(100vh - 71px);
+}
+
+.mapboxgl-marker {
+  background-image: url('/marker.png');
+  background-size: cover;
+  width: 31px;
+  height: 50px;
+  cursor: pointer;
+}
+
+
+.mapboxgl-popup-content {
+  text-align: center;
+}
+
+.mapboxgl-popup-content h3 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.mapboxgl-popup-content > div {
+  color: #A4A6A9;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.mapboxgl-popup-content .cta {
+  cursor: pointer;
+  border: 0;
+  margin-top: 12px;
+  display: block;
+  background: #000000;
+  color: #FFFFFF;
+  font-size: 13px;
+  border-radius: 150px;
+  padding: 3px 12px;
+}
+
+.about-us h3.title-uppercase {
+  margin-top: 50px;
+}
+
+.about-us p {
+    margin-top: 20px;
+}
+
+.about-us .creators {
+    margin-top: 100px;
+}
+
+.about-header.page-header .content-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #FFFFFF;
+  width: 100%;
+}
+
+.btn-twitter {
+  color: #FFFFFF !important;
+  background-color: #55acee;
+  border-color: #55acee;
+  opacity: 0.8;
+}
+
+.btn-facebook {
+  color: #FFFFFF !important;
+  background-color: #3b5998;
+  border-color: #3b5998;
+  opacity: 0.8;
+}
+
+.btn-google {
+  color: #FFFFFF !important;
+  background-color: #dd4b39;
+  border-color: #dd4b39;
+  opacity: 0.8;
+}
+
+.contact-us .title {
+  margin-top: 40px;
+}
+
+.contact-us .contact .form-control {
+  margin-bottom: 20px;
+}
+
+.terms .hero {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.terms .hero h2 {
+  margin-bottom: 10px;
+}
+
+.terms .lines p {
+  display: block;
+  width: 100%;
+}
+
+.terms .lines h6 {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.table .td-actions .btn.btn-sm, .table .td-actions .btn.btn-xs {
+  padding-left: 3px;
+  padding-right: 3px;
+}

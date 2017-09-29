@@ -139,6 +139,8 @@ exports.getSettings = (req, res) => {
  */
 exports.postUpdateProfile = (req, res, next) => {
   req.assert('email', 'Please enter a valid email address.').isEmail();
+  req.assert('lastProjectDays', 'Project duration must be an integer').isInt();
+  req.assert('lastProjectPrice', 'Project price must be an integer').isFloat();
   req.sanitize('email').normalizeEmail({ gmail_remove_dots: false });
 
   const errors = req.validationErrors();
@@ -153,6 +155,7 @@ exports.postUpdateProfile = (req, res, next) => {
     user.email = req.body.email || '';
     user.profile.name = req.body.name || '';
     user.profile.title = req.body.title || '';
+    user.profile.introduction = req.body.introduction || '';
     user.lastProject.days = req.body.lastProjectDays || '';
     user.lastProject.price = req.body.lastProjectPrice || '';
 

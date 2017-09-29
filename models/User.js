@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
   password: String,
   passwordResetToken: String,
   passwordResetExpires: Date,
+  verified: { type: Boolean, default: false },
 
   lastProject: {
     days: Number,
@@ -18,7 +19,8 @@ const userSchema = new mongoose.Schema({
     name: String,
     title: String,
     locationLL: String,
-    locationPretty: String
+    locationPretty: String,
+    introduction: String
   }
 }, { timestamps: true });
 

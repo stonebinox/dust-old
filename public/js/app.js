@@ -15,13 +15,19 @@ var geocoder = new MapboxGeocoder({
 
 map.addControl(geocoder);
 
-var createPopup = function(name, days, price, id) {
+var createPopup = function(name, days, price, id, isAdmin) {
   return new mapboxgl.Popup()
-    .setHTML(`
+    .setHTML(!isAdmin ? `
       <form action="/api/conversation/${id}" method="POST">
         <input type="hidden" name="_csrf" value="${window.csrf}"/>
         <h3>${name}</h3><div>Last MVP built</div><div>in ${days} days for $${price}</div>
         <button class="cta" type="submit">Request Chat</button>
+      </form>
+    ` : `
+      <form action="/api/conversation/${id}" method="POST">
+        <input type="hidden" name="_csrf" value="${window.csrf}"/>
+        <h3>${name}</h3><div>Dust Founder</div><div>ask me anything!</div>
+        <button class="cta" type="submit">Chat</button>
       </form>
     `);
 }
@@ -30,9 +36,15 @@ $.getJSON('/api/developers', function(res) {
   if (res && res.data) {
     res.data.map(person => {
       var el = document.createElement('div');
+
+      // Show different marker for admins
+      if (person.isAdmin) {
+        el.className = 'isAdmin';
+      }
+
       return new mapboxgl.Marker(el, { offset: [-11, -11] })
         .setLngLat(person.location)
-        .setPopup(createPopup(person.name, person.lastDuration, person.lastPrice, person.id))
+        .setPopup(createPopup(person.name, person.lastDuration, person.lastPrice, person.id, person.isAdmin))
         .addTo(map);
     })
   }

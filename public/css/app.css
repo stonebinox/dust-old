@@ -7,6 +7,19 @@
   height: calc(100vh - 71px);
 }
 
+.tagline {
+  position: absolute;
+  left: 13px;
+  z-index: 10;
+  width: 400px;
+  margin-top: 10px;
+  background: #fff;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+  border-radius: 3px;
+  padding: 3px 10px;
+  font-size: 12px;
+}
+
 .mapboxgl-marker {
   background-image: url('/marker.png');
   background-size: cover;
@@ -15,6 +28,9 @@
   cursor: pointer;
 }
 
+.mapboxgl-marker.isAdmin {
+  background-image: url('/marker_admin.png') !important;
+}
 
 .mapboxgl-popup-content {
   text-align: center;
@@ -36,13 +52,14 @@
 .mapboxgl-popup-content .cta {
   cursor: pointer;
   border: 0;
-  margin-top: 12px;
   display: block;
   background: #000000;
   color: #FFFFFF;
   font-size: 13px;
   border-radius: 150px;
   padding: 3px 12px;
+  margin: 0 auto;
+  margin-top: 12px;
 }
 
 .about-us h3.title-uppercase {

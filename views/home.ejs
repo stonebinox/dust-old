@@ -4,12 +4,16 @@
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.min.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v0.40.0/mapbox-gl.css' rel='stylesheet' />
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.css' type='text/css' />
-<link href='/css/app.css' rel='stylesheet' />
-<% block('footer').append('<script src="/js/app.js"></script>') %>
+<link href='/css/app.css?<%= hashCSSapp %>' rel='stylesheet' />
+
+<% block('footer').append(scriptJSapp) %>
 
 <div class="wrapper">
   <div class="main">
     <div class="map-container section section-buttons">
+      <div class="tagline">
+        Meet awesome developers who can build an MVP for your idea in a few days for a few hundred dollars
+      </div>
       <div id='js-map' class='map home-map'> </div>
     </div>
   </div>

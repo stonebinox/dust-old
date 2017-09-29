@@ -19,7 +19,7 @@ const expressValidator = require('express-validator');
 const forceSSL = require('force-ssl-heroku');
 const ejs = require('ejs-mate');
 const requestIp = require('request-ip');
-// const md5File = require('md5-file');
+const md5File = require('md5-file');
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -38,8 +38,19 @@ const routes = require('./routes');
  */
 const app = express();
 
-// app.locals.hashCSS = md5File.sync(path.join(__dirname, 'public/src/assets/css/thesaas.min.css'));
-// app.locals.hashJS = md5File.sync(path.join(__dirname, 'public/src/assets/js/thesaas.min.js'));
+// Bit uggly, but easy to delegate to fusebox later on.
+app.locals.hashCSSapp = md5File.sync(path.join(__dirname, 'public/css/app.css'));
+app.locals.hashCSSmessages = md5File.sync(path.join(__dirname, 'public/css/messages.css'));
+app.locals.hashCSSsettings = md5File.sync(path.join(__dirname, 'public/css/settings.css'));
+app.locals.hashJSapp = md5File.sync(path.join(__dirname, 'public/js/app.js'));
+app.locals.hashJSchat = md5File.sync(path.join(__dirname, 'public/js/dist/chat.js'));
+app.locals.hashJSmessages = md5File.sync(path.join(__dirname, 'public/js/dist/messages.js'));
+app.locals.hashJSsettings = md5File.sync(path.join(__dirname, 'public/js/dist/settings.js'));
+
+app.locals.scriptJSapp = `<script src="/js/app.js?${app.locals.hashJSapp}"></script>`;
+app.locals.scriptJSmessages = `<script src="/js/dist/messages.js?${app.locals.hashJSmessages}"></script>`;
+app.locals.scriptJSchat = `<script src="/js/dist/chat.js?${app.locals.hashJSchat}"></script>`;
+app.locals.scriptJSsettings = `<script src="/js/dist/settings.js?${app.locals.hashJSsettings}"></script>`;
 
 
 /**

@@ -71,7 +71,7 @@
                   <div class="col-md-12 col-sm-12">
                     <div class="form-group">
                       <label>Tell us about your projects, links to github, portfolio, etc</label>
-                      <textarea name="introduction" class="form-control" rows="4" placeholder="Tell us about yourself"><%= user.profile.introduction%></textarea>
+                      <textarea name="introduction" class="form-control" rows="4" placeholder="Tell us about yourself"><%= user.profile.introduction || '' %></textarea>
                     </div>
                   </div>
                 </div>

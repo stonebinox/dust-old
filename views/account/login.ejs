@@ -2,12 +2,12 @@
 
 <div class="wrapper">
   <div class="page-header" style="background-image: url('/img/login-image.jpg');">
-    <%- partial('partials/flash') %>
     <div class="filter"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-4 offset-lg-4 col-sm-6 offset-sm-3">
           <div class="card card-register">
+            <%- partial('partials/flash') %>
             <h3 class="title">Login</h3>
             <form class="register-form" method="POST">
               <input type="hidden" name="_csrf" value="<%- _csrf %>"/>

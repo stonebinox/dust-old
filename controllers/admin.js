@@ -1,8 +1,21 @@
+const nodemailer = require('nodemailer');
+const sgTransport = require('nodemailer-sendgrid-transport');
 const User = require('../models/User');
+
+const transportOptions = {
+  auth: {
+    api_key: process.env.SENDGRID_API_KEY
+  }
+};
+
+const transporter = nodemailer.createTransport(sgTransport(transportOptions));
 
 const getUnverifiedUsers = () => {
   return new Promise((resolve, reject) => {
-    User.find({ $or: [{ verified: null }, { verified: false }] }).exec((err, users) => {
+    User.find({
+      $or: [{ verified: null }, { verified: false }],
+      isDeveloper: true
+    }).exec((err, users) => {
       if (err) {
         reject(err);
       }
@@ -34,8 +47,21 @@ exports.approveUser = async (req, res, next) => {
         return res.redirect('/admin');
       }
 
-      req.flash('success', { msg: `User ${req.params.id} activated.` });
-      res.redirect('/admin');
+      const mailOptions = {
+        to: user.email,
+        from: 'hello@dusthq.com',
+        subject: 'Your DustHQ has been approved',
+        text: 'Hello,\n\nThis is just a confirmation that your DustHQ account has just been approved.\n'
+      };
+
+      transporter.sendMail(mailOptions)
+        .then(() => {
+          req.flash('success', { msg: `User ${req.params.id} activated.` });
+          res.redirect('/admin');
+        }).catch(() => {
+          req.flash('error', { msg: `User ${req.params.id} activated but couldnt send email.` });
+          res.redirect('/admin');
+        });
     });
   });
 };

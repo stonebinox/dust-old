@@ -5,11 +5,13 @@ const StaticRoutes = require('./static');
 const AuthRoutes = require('./auth');
 const AccountRoutes = require('./account');
 const ApiRoutes = require('./api');
+const MessagesRoutes = require('./messages');
 const AdminRoutes = require('./admin');
 
 const router = express.Router();
 
 router.use('/', StaticRoutes);
+router.use('/', MessagesRoutes);
 router.use('/', AuthRoutes);
 router.use('/', AccountRoutes);
 router.use('/', AdminRoutes);

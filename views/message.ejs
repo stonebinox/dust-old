@@ -1,0 +1,67 @@
+<% layout('layout') -%>
+
+<link href='/css/app.css?<%= hashCSSapp %>' rel='stylesheet' />
+<link href='/css/messages.css?<%= hashCSSmessages %>' rel='stylesheet' />
+
+<% block('footer').append(scriptJSchat) %>
+
+<div class="team-3 chat">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2 chat-title">
+        <a href="/messages" class="btn btn-move-left btn-round">
+          <i class="nc-icon nc-minimal-left"></i> Back
+        </a>
+      </div>
+    </div>
+
+    <div id="js-chat-area" class="row chat-area">
+      <div class="col-md-8 offset-md-2 chat-content" id="js-chat">
+
+        <% messages.forEach(function(message) { %>
+            <div class="media">
+              <div class="pull-left">
+                <div class="avatar">
+                  <img alt="" class="media-object js-avatar" data-email="<%- message.author.email %>" src="">
+                </div>
+              </div>
+              <div class="media-body">
+                <h5 class="media-heading"><%= message.author._id.toString() === currentUser.toString() ? 'You' : message.author.profile.name %></h5>
+                <div class="pull-right">
+                  <h6 class="text-muted"><%- new Date(message.createdAt).toLocaleString() %></h6>
+                </div>
+                <p><%= message.body %></p>
+              </div>
+            </div>
+        <% }); %>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="media-body chat-submit">
+          <textarea class="js-chat-text form-control" placeholder="Write a nice reply or go home..." rows="4"></textarea>
+
+          <div class="media-footer">
+            <button class="js-chat-reply btn btn-info pull-right">
+              <div class="hidden uil-reload-css reload-small" style=""><div></div></div>
+              Reply
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  window.conversationId = "<%- conversationId %>";
+  window.currentUsersId = "<%- currentUser %>";
+  window.currentUsersEmail = "<%- userEmail %>";
+  window.currentUsersName = "<%- userName %>";
+  window.otherParticipantName = "<%- otherParticipant.name %>";
+  window.otherParticipantEmail = "<%- otherParticipant.email %>";
+  window.csrf = "<%- _csrf %>";
+</script>

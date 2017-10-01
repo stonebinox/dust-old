@@ -1,0 +1,48 @@
+<% layout('layout') -%>
+
+<link href='/css/app.css?<%= hashCSSapp %>' rel='stylesheet' />
+<link href='/css/messages.css?<%= hashCSSmessages %>' rel='stylesheet' />
+
+<% block('footer').append(scriptJSmessages) %>
+
+<div class="team-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2 text-center">
+        <h2 class="title">Messages</h2>
+        <h5 class="description">These is the list of people you've contacted</h5>
+      </div>
+    </div>
+    <div class="space-top"></div>
+    <div class="row messages-grid">
+
+      <% conversations.forEach(function(conversation) {%>
+        <div class="col-md-6">
+          <div class="card card-profile card-plain">
+            <div class="row">
+              <div class="col-md-5">
+                <div class="card-img-top">
+                  <img alt="" class="img js-avatar" data-email="<%= conversation.email %>" src="">
+                </div>
+
+              </div>
+              <div class="col-md-7">
+                <div class="card-block text-left">
+                  <h4 class="card-title"><%= conversation.profile.name %></h4>
+                  <h6 class="card-category"><%= conversation.profile.title %></h6>
+                  <div class="card-description">
+                    <a class="btn btn-outline-success btn-sm" href="/messages/<%- conversation.conversationId %>">Chat</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+
+    </div>
+  </div>
+</div>
+
+<%- partial('partials/footer') %>
+

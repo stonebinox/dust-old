@@ -22,11 +22,15 @@
                   <a aria-expanded="true" class="nav-link active" data-toggle="tab" href="#home" role="tab">Profile</a>
                 </li>
                 <li class="nav-item">
+                  <a aria-expanded="false" class="nav-link" data-toggle="tab" href="#developer" role="tab">Developer</a>
+                </li>
+                <li class="nav-item">
                   <a aria-expanded="false" class="nav-link" data-toggle="tab" href="#profile" role="tab">Account</a>
                 </li>
               </ul>
             </div>
           </div>
+
           <div class="tab-content text-center" id="my-tab-content">
             <div aria-expanded="true" class="tab-pane active" id="home" role="tabpanel">
               <div class="row text-left avatar-change">
@@ -46,10 +50,33 @@
                   <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Email</label>
-                      <input value="<%- user.email %>" name="email" class="form-control border-input" placeholder="Email" type="text">
+                      <input value="<%- user.email %>" name="email" class="form-control border-input" placeholder="Email" type="email" required >
                     </div>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                      <label>Whats your title?</label>
+                      <input value="<%- user.profile.title %>" name="title" class="form-control border-input" placeholder="eg: fullstack engineer" type="text">
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button class="btn btn-wd btn-info btn-round" type="submit">Save</button>
+                </div>
+              </form>
+            </div>
+
+            <div aria-expanded="false" class="tab-pane" id="developer" role="tabpanel">
+              <div class="row text-left avatar-change">
+                <div class="col-md-12">
+                  If you're a developer who wants to help people make their MVP's please fill up the form below and we'll review it.
+                </div>
+              </div>
+              <form class="settings-form" method="POST" action="/settings/profile/developer">
+                <input type="hidden" name="_csrf" value="<%- _csrf %>"/>
+                <input type="hidden" name="isDeveloper" value="true"/>
                 <div class="row">
                   <div class="col-md-6 col-sm-6">
                     <div class="form-group">
@@ -80,18 +107,18 @@
                   <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>How many days it took?</label>
-                      <input name="lastProjectDays" value="<%- user.lastProject.days %>" class="form-control border-input" placeholder="Last project" type="text">
+                      <input name="lastProjectDays" value="<%- user.lastProject.days %>" class="form-control border-input" placeholder="Last project" type="number" required >
                     </div>
                   </div>
                   <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>How much you charged?</label>
-                      <input value="<%- user.lastProject.price %>" name="lastProjectPrice" class="form-control border-input" placeholder="How much ?" type="text">
+                      <input value="<%- user.lastProject.price %>" name="lastProjectPrice" class="form-control border-input" placeholder="How much ?" type="number" required >
                     </div>
                   </div>
                 </div>
                 <div class="text-center">
-                  <button class="btn btn-wd btn-info btn-round" type="submit">Save</button>
+                  <button class="btn btn-wd btn-success btn-round" type="submit"><%= user.verified ? 'Save' : 'Submit for Review' %></button>
                 </div>
               </form>
             </div>

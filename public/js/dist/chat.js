@@ -8,16 +8,20 @@ const socket = require('socket.io-client')('http://localhost:3000');
 
 socket.emit('enter conversation', window.conversationId);
 
-socket.on('refresh messages', (message) => {
-  const sentAt = new Date().toLocaleString()
+socket.on('refresh messages', (msg) => {
+  const sentAt = new Date().toLocaleString();
+  const name = msg.name === window.currentUsersName ? 'You' : msg.name
 
-  appendMessage(message, sentAt);
+  appendMessage(msg.message, sentAt, msg.email, name);
 });
 
 // Scroll chat to bottom..
 const scrollToBottom = () => {
-  const div = document.getElementById('js-chat');
-  div.scrollTop = div.scrollHeight - div.clientHeight;
+  const div1 = document.getElementById('js-chat');
+  const div2 = document.getElementById('js-chat-area');
+
+  div1.scrollTop = div1.scrollHeight - div1.clientHeight;
+  div2.scrollTop = div2.scrollHeight - div2.clientHeight;
 };
 
 const getGravatar = (email, size) => {
@@ -54,8 +58,8 @@ const sendMessage = (composedMessage) => {
   })
 };
 
-const appendMessage = (msg, time) => {
-  const avatar = getGravatar(window.currentUsersEmail);
+const appendMessage = (msg, time, email, name) => {
+  const avatar = getGravatar(email);
 
   const el = `
     <div class="media">
@@ -65,7 +69,7 @@ const appendMessage = (msg, time) => {
         </div>
       </div>
       <div class="media-body">
-        <h5 class="media-heading">You</h5>
+        <h5 class="media-heading">${name}</h5>
         <div class="pull-right">
           <h6 class="text-muted">${time}</h6>
         </div>
@@ -86,7 +90,8 @@ $('.js-chat-reply').on('click', (e) => {
     socket.emit('new message', {
       room: window.conversationId,
       message: msg,
-      user: window.currentUsersId
+      name: window.currentUsersName,
+      email: window.currentUsersEmail
     });
   })
 });

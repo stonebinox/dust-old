@@ -19,6 +19,33 @@
   </div>
 </div>
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Welcome!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              Thanks for signing up to dust, if you are a developer please compleate your profile in your settings page.
+            </div>
+            <div class="modal-footer">
+                <div class="left-side">
+                    <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Later</button>
+                </div>
+                <div class="divider"></div>
+                <div class="right-side">
+                    <a href="/settings" class="btn btn-success btn-link">Setup Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- partial('partials/footer') %>
+
 <script>
   window.initialLocation = <%- JSON.stringify(location) %>;
   window.csrf = "<%- _csrf %>";

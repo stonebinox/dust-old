@@ -116,7 +116,7 @@ exports.postSignup = (req, res, next) => {
         if (err) {
           return next(err);
         }
-        res.redirect('/');
+        res.redirect('/?welcome=true');
       });
     });
   });
@@ -139,8 +139,6 @@ exports.getSettings = (req, res) => {
  */
 exports.postUpdateProfile = (req, res, next) => {
   req.assert('email', 'Please enter a valid email address.').isEmail();
-  req.assert('lastProjectDays', 'Project duration must be an integer').isInt();
-  req.assert('lastProjectPrice', 'Project price must be an integer').isFloat();
   req.sanitize('email').normalizeEmail({ gmail_remove_dots: false });
 
   const errors = req.validationErrors();
@@ -155,9 +153,40 @@ exports.postUpdateProfile = (req, res, next) => {
     user.email = req.body.email || '';
     user.profile.name = req.body.name || '';
     user.profile.title = req.body.title || '';
+
+    user.save((err) => {
+      if (err) {
+        if (err.code === 11000) {
+          req.flash('errors', { msg: 'The email address you have entered is already associated with an account.' });
+          return res.redirect('/settings');
+        }
+        return next(err);
+      }
+
+      req.flash('success', { msg: 'Profile information has been updated.' });
+      res.redirect('/settings');
+    });
+  });
+};
+
+exports.postUpdateProfileDeveloper = (req, res, next) => {
+  req.assert('lastProjectDays', 'Project duration must be an integer').isInt();
+  req.assert('lastProjectPrice', 'Project price must be an integer').isFloat();
+
+  const errors = req.validationErrors();
+
+  if (errors) {
+    req.flash('errors', errors);
+    return res.redirect('/settings');
+  }
+
+  User.findById(req.user.id, (err, user) => {
+    if (err) { return next(err); }
+    user.profile.title = req.body.title || '';
     user.profile.introduction = req.body.introduction || '';
     user.lastProject.days = req.body.lastProjectDays || '';
     user.lastProject.price = req.body.lastProjectPrice || '';
+    user.isDeveloper = true;
 
     if (user.profile.locationPretty !== req.body.location) {
       user.profile.locationLL = req.body.locationLL || '';
@@ -300,8 +329,8 @@ exports.postReset = (req, res, next) => {
     if (!user) { return; }
     const mailOptions = {
       to: user.email,
-      from: 'hello@reminders.company',
-      subject: 'Your reminders.company password has been changed',
+      from: 'hello@dusthq.com',
+      subject: 'Your DustHQ password has been changed',
       text: `Hello,\n\nThis is a confirmation that the password for your account ${user.email} has just been changed.\n`
     };
     return transporter.sendMail(mailOptions)
@@ -368,8 +397,8 @@ exports.postForgot = (req, res, next) => {
     const token = user.passwordResetToken;
     const mailOptions = {
       to: user.email,
-      from: 'hello@reminders.company',
-      subject: 'Reset your password on reminders.company',
+      from: 'hello@dusthq.com',
+      subject: 'Reset your password on DustHQ',
       text: `You are receiving this email because you (or someone else) have requested the reset of the password for your account.\n\n
         Please click on the following link, or paste this into your browser to complete the process:\n\n
         http://${req.headers.host}/reset/${token}\n\n

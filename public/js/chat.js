@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-const socket = require('socket.io-client')('http://localhost:3000');
+const socket = require('socket.io-client')('/');
 
 socket.emit('enter conversation', window.conversationId);
 

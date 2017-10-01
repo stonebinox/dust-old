@@ -4,7 +4,7 @@ ___scope___.file("chat.js", function(exports, require, module, __filename, __dir
 
 /* eslint-disable */
 
-const socket = require('socket.io-client')('http://localhost:3000');
+const socket = require('socket.io-client')('/');
 
 socket.emit('enter conversation', window.conversationId);
 

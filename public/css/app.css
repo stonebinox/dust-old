@@ -33,6 +33,18 @@
   background-image: url('/marker_admin.png') !important;
 }
 
+.mapboxgl-marker.isDeveloper {
+  background-image: url('/marker_developer.png') !important;
+}
+
+.mapboxgl-marker.isOwn {
+  background-image: url('/marker_own.png') !important;
+}
+
+.mapboxgl-marker.isFounder {
+  background-image: url('/marker_founder.png') !important;
+}
+
 .mapboxgl-popup-content {
   text-align: center;
 }

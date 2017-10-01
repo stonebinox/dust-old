@@ -18,6 +18,7 @@ const serializeData = (users, current) => {
       location: getSafeLL(user.profile.locationLL),
       lastPrice: user.mvpSettings.price,
       lastDuration: user.mvpSettings.days,
+      isDeveloper: user.isDeveloper,
       isAdmin: adminMiddleware.adminList.includes(user.email),
       isOwn: user._id.toString() === current.toString()
     };

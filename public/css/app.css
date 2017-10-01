@@ -22,7 +22,7 @@
 }
 
 .mapboxgl-marker {
-  background-image: url('/marker.png');
+  background-image: url('/marker_founder.png');
   background-size: cover;
   width: 31px;
   height: 50px;

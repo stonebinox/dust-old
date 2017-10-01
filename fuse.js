@@ -14,8 +14,8 @@ fuse.bundle('chat')
   .instructions('> chat.js');
   //.watch('public/js/chat.js');
 
-//fuse.bundle('messages')
-  //.instructions('> messages.js')
+fuse.bundle('messages')
+  .instructions('> messages.js');
   //.watch('public/js/messages.js');
 
 fuse.run();

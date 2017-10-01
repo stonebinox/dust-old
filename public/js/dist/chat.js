@@ -82,7 +82,7 @@ const appendMessage = (msg, time, email, name) => {
   scrollToBottom();
 };
 
-$('.js-chat-reply').on('click', (e) => {
+const persistMessage = () => {
   const msg = $('.js-chat-text').val();
   $('.js-chat-text').val('');
 
@@ -94,6 +94,20 @@ $('.js-chat-reply').on('click', (e) => {
       email: window.currentUsersEmail
     });
   })
+};
+
+$('.js-chat-text').on('keypress', function(e) {
+  const key = e.keyCode;
+
+  // If the user has pressed enter
+  if (key === 13) {
+    persistMessage();
+    return false;
+  }
+});
+
+$('.js-chat-reply').on('click', () => {
+  persistMessage();
 });
 
 // Load email gravatars

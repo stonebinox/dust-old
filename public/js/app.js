@@ -15,7 +15,15 @@ var geocoder = new MapboxGeocoder({
 
 map.addControl(geocoder);
 
-var createPopup = function(name, days, price, id, isAdmin) {
+var createPopup = function(name, days, price, id, isAdmin, isOwn) {
+  if (isOwn) {
+  return new mapboxgl.Popup()
+    .setHTML(`
+      <h3>${name}</h3>
+      <div>Thats you!</div>
+    `)
+  }
+
   return new mapboxgl.Popup()
     .setHTML(!isAdmin ? `
       <form action="/api/conversation/${id}" method="POST">
@@ -44,7 +52,7 @@ $.getJSON('/api/developers', function(res) {
 
       return new mapboxgl.Marker(el, { offset: [-11, -11] })
         .setLngLat(person.location)
-        .setPopup(createPopup(person.name, person.lastDuration, person.lastPrice, person.id, person.isAdmin))
+        .setPopup(createPopup(person.name, person.lastDuration, person.lastPrice, person.id, person.isAdmin, person.isOwn))
         .addTo(map);
     })
   }

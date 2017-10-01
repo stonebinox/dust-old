@@ -18,10 +18,9 @@ const serializeData = (users, current) => {
       location: getSafeLL(user.profile.locationLL),
       lastPrice: user.lastProject.price,
       lastDuration: user.lastProject.days,
-      isAdmin: adminMiddleware.adminList.includes(user.email)
+      isAdmin: adminMiddleware.adminList.includes(user.email),
+      isOwn: user._id.toString() === current.toString()
     };
-  }).filter((user) => {
-    return user.id !== current.toString();
   });
 };
 

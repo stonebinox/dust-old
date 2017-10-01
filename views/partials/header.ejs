@@ -13,7 +13,7 @@
         <% if (user) { %>
           <li class="nav-item dropdown">
               <button href="#paper-kit" class="dropdown-toggle btn btn-round btn-danger" data-toggle="dropdown">
-                <%- user.profile.name || user.email || user.id %> <b class="caret"></b>
+                <%- user.profile.firstName || user.email || user.id %> <b class="caret"></b>
               </button>
               <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
                   <li class="dropdown-item"><a href="/settings">Settings</a></li>

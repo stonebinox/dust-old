@@ -1,0 +1,90 @@
+<form class="settings-form" method="POST" action="/settings/profile">
+  <input type="hidden" name="_csrf" value="<%- _csrf %>"/>
+  <div class="row">
+    <div class="col-md-6 col-sm-6">
+      <div class="form-group">
+        <label>First Name*</label>
+        <input name="firstName" value="<%- user.profile.firstName %>" class="form-control border-input" placeholder="First Name" type="text" required>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <div class="form-group">
+        <label>Last Name*</label>
+        <input name="lastName" value="<%- user.profile.lastName %>" class="form-control border-input" placeholder="Last Name" type="text" required>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-sm-6">
+      <div class="form-group">
+        <label>Email*</label>
+        <input value="<%- user.email %>" name="email" class="form-control border-input" placeholder="Email" type="email" required >
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <div class="form-group">
+        <label>Location*</label>
+        <input name="location" value="<%- user.profile.locationPretty %>" class="js-location form-control border-input" placeholder="Last project" type="text" required>
+
+        <input type="hidden" name="locationLL" value="<%- user.profile.locationLL %>" class="js-location-ll">
+        <input type="hidden" name="locationPretty" value="<%- user.profile.locationPretty %>" class="js-location-pretty">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-sm-6">
+      <div class="form-group">
+        <label>Website*</label>
+        <input value="<%- user.profile.website %>" name="website" class="form-control border-input" placeholder="Your website/portfolio" type="url" required>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <div class="form-group">
+        <label>Title</label>
+        <input value="<%- user.profile.title %>" name="title" class="form-control border-input" placeholder="eg: fullstack engineer" type="text">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-sm-6">
+      <div class="form-group">
+        <label>ProductHunt Profile</label>
+        <input value="<%- user.profile.producthunt %>" name="producthunt" class="form-control border-input" placeholder="Your producthunt profile" type="text">
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <div class="form-group">
+        <label>Twitter</label>
+        <input value="<%- user.profile.twitter %>" name="twitter" class="form-control border-input" placeholder="Your twitter profile" type="text">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-sm-6">
+      <div class="form-group">
+        <label>Maximum MVP price range</label>
+        <select class="form-control border-input" name="priceToBuildMVP">
+          <option value="$0-$200" <%= user.mvpSettings.price === '$0-$200' ? 'selected' : ''%>>$0-$200</option>
+          <option value="$200-$400" <%= user.mvpSettings.price === '$200-$400' ? 'selected' : ''%>>$200-$400</option>
+          <option value="$400-%600" <%= user.mvpSettings.price === '$400-%600' ? 'selected' : ''%>>$400-%600</option>
+          <option value="More than $600" <%= user.mvpSettings.price === 'More than $600' ? 'selected' : ''%>>More than $600</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <div class="form-group">
+        <label>Maximum days to build MVP</label>
+        <select class="form-control border-input" name="daysToBuildMVP">
+          <option value="0-5" <%= user.mvpSettings.days === '0-5' ? 'selected' : '' %>>0-5</option>
+          <option value="5-10" <%= user.mvpSettings.days === '5-10' ? 'selected' : '' %>>5-10</option>
+          <option value="10-15" <%= user.mvpSettings.days === '10-15' ? 'selected' : '' %>>10-15</option>
+          <option value="More than 15" <%= user.mvpSettings.days === 'More than 15' ? 'selected' : '' %>>More than 15</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <button class="btn btn-wd btn-info btn-round" type="submit"><%= user.verified ? 'Save' : 'Submit for Review' %></button>
+  </div>
+</form>

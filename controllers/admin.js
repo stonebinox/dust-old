@@ -13,8 +13,7 @@ const transporter = nodemailer.createTransport(sgTransport(transportOptions));
 const getUnverifiedUsers = () => {
   return new Promise((resolve, reject) => {
     User.find({
-      $or: [{ verified: null }, { verified: false }],
-      isDeveloper: true
+      $or: [{ verified: null }, { verified: false }]
     }).exec((err, users) => {
       if (err) {
         reject(err);

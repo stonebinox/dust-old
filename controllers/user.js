@@ -144,6 +144,7 @@ exports.postUpdateProfile = (req, res, next) => {
   const errors = req.validationErrors();
 
   if (errors) {
+    console.log(errors);
     req.flash('errors', errors);
     return res.redirect('/settings');
   }
@@ -151,8 +152,21 @@ exports.postUpdateProfile = (req, res, next) => {
   User.findById(req.user.id, (err, user) => {
     if (err) { return next(err); }
     user.email = req.body.email || '';
+    user.profile.firstName = req.body.firstName || '';
+    user.profile.lastName = req.body.lastName || '';
     user.profile.name = req.body.name || '';
     user.profile.title = req.body.title || '';
+    user.profile.website = req.body.website || '';
+    user.profile.producthunt = req.body.producthunt || '';
+    user.profile.twitter = req.body.twitter || '';
+
+    user.mvpSettings.days = req.body.daysToBuildMVP || '';
+    user.mvpSettings.price = req.body.priceToBuildMVP || '';
+
+    if (user.profile.locationPretty !== req.body.location) {
+      user.profile.locationLL = req.body.locationLL || '';
+      user.profile.locationPretty = req.body.locationPretty || '';
+    }
 
     user.save((err) => {
       if (err) {
@@ -170,8 +184,8 @@ exports.postUpdateProfile = (req, res, next) => {
 };
 
 exports.postUpdateProfileDeveloper = (req, res, next) => {
-  req.assert('lastProjectDays', 'Project duration must be an integer').isInt();
-  req.assert('lastProjectPrice', 'Project price must be an integer').isFloat();
+  req.assert('email', 'Please enter a valid email address.').isEmail();
+  req.sanitize('email').normalizeEmail({ gmail_remove_dots: false });
 
   const errors = req.validationErrors();
 
@@ -182,11 +196,19 @@ exports.postUpdateProfileDeveloper = (req, res, next) => {
 
   User.findById(req.user.id, (err, user) => {
     if (err) { return next(err); }
+    user.isDeveloper = true;
+
+    user.profile.firstName = req.body.firstName || '';
+    user.profile.lastName = req.body.lastName || '';
+    user.profile.name = req.body.name || '';
     user.profile.title = req.body.title || '';
     user.profile.introduction = req.body.introduction || '';
-    user.lastProject.days = req.body.lastProjectDays || '';
-    user.lastProject.price = req.body.lastProjectPrice || '';
-    user.isDeveloper = true;
+    user.profile.website = req.body.website || '';
+    user.profile.producthunt = req.body.producthunt || '';
+    user.profile.twitter = req.body.twitter || '';
+
+    user.mvpSettings.days = req.body.daysToBuildMVP || '';
+    user.mvpSettings.price = req.body.priceToBuildMVP || '';
 
     if (user.profile.locationPretty !== req.body.location) {
       user.profile.locationLL = req.body.locationLL || '';

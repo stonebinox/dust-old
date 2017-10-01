@@ -42,7 +42,7 @@ const getOtherParticipant = (conversationId, currentUserId) => {
     Conversation.findOne({ _id: conversationId })
       .populate({
         path: 'participants',
-        select: 'profile.name email'
+        select: 'profile.firstName profile.lastName email'
       })
       .exec((err, conversation) => {
         if (err) {
@@ -78,7 +78,7 @@ exports.message = (req, res) => {
     .sort('createdAt')
     .populate({
       path: 'author',
-      select: 'profile.name email'
+      select: 'profile.firstName profile.lastName email'
     })
     .exec(async (err, messages) => {
       if (err) {
@@ -92,10 +92,10 @@ exports.message = (req, res) => {
         fixedHeader: true,
         currentUser: req.user._id,
         conversationId: req.params.conversationId,
-        userName: req.user.profile.name,
+        userName: `${req.user.profile.firstName} ${req.user.profile.lastName}`,
         userEmail: req.user.email,
         otherParticipant: {
-          name: user.profile.name,
+          name: `${user.profile.firstName} ${user.profile.lastName}`,
           email: user.email
         },
         messages

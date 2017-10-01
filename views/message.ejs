@@ -26,7 +26,7 @@
                 </div>
               </div>
               <div class="media-body">
-                <h5 class="media-heading"><%= message.author._id.toString() === currentUser.toString() ? 'You' : message.author.profile.name %></h5>
+                <h5 class="media-heading"><%= message.author._id.toString() === currentUser.toString() ? 'You' : message.author.profile.firstName + ' ' + message.author.profile.lastName %></h5>
                 <div class="pull-right">
                   <h6 class="text-muted"><%- new Date(message.createdAt).toLocaleString() %></h6>
                 </div>

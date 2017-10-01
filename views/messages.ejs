@@ -28,7 +28,7 @@
               </div>
               <div class="col-md-7">
                 <div class="card-block text-left">
-                  <h4 class="card-title"><%= conversation.profile.name %></h4>
+                  <h4 class="card-title"><%= conversation.profile.firstName %> <%= conversation.profile.lastName %></h4>
                   <h6 class="card-category"><%= conversation.profile.title %></h6>
                   <div class="card-description">
                     <a class="btn btn-outline-success btn-sm" href="/messages/<%- conversation.conversationId %>">Chat</a>

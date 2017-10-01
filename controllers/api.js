@@ -14,10 +14,10 @@ const serializeData = (users, current) => {
   return users.map((user) => {
     return {
       id: user._id.toString(),
-      name: user.profile.name,
+      name: `${user.profile.firstName} ${user.profile.lastName}`,
       location: getSafeLL(user.profile.locationLL),
-      lastPrice: user.lastProject.price,
-      lastDuration: user.lastProject.days,
+      lastPrice: user.mvpSettings.price,
+      lastDuration: user.mvpSettings.days,
       isAdmin: adminMiddleware.adminList.includes(user.email),
       isOwn: user._id.toString() === current.toString()
     };

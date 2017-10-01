@@ -11,17 +11,21 @@ const userSchema = new mongoose.Schema({
   verified: { type: Boolean, default: false },
   isDeveloper: { type: Boolean, default: false },
 
-  lastProject: {
-    days: Number,
-    price: Number
+  mvpSettings: {
+    days: String,
+    price: String
   },
 
   profile: {
-    name: String,
+    firstName: String,
+    lastName: String,
     title: String,
     locationLL: String,
     locationPretty: String,
-    introduction: String
+    introduction: String,
+    website: String,
+    twitter: String,
+    producthunt: String,
   }
 }, { timestamps: true });
 

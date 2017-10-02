@@ -1,6 +1,8 @@
 /* eslint-disable */
 
-mapboxgl.accessToken = 'pk.eyJ1Ijoic2FiYXJhc2FiYSIsImEiOiJjajd3MmowMW81Y2t3MndvMjA2Y3BmYWhlIn0.cPBB7UP-sNjWYRqumJCQXA';
+// This one is mine..
+// mapboxgl.accessToken = 'pk.eyJ1Ijoic2FiYXJhc2FiYSIsImEiOiJjajd3MmowMW81Y2t3MndvMjA2Y3BmYWhlIn0.cPBB7UP-sNjWYRqumJCQXA';
+mapboxgl.accessToken = 'pk.eyJ1IjoiZHVzdGhxIiwiYSI6ImNqODQ2bDd0dzA0cncyd281czJwMHVrbHoifQ.5FSMgQ7ahvwhmHGLFyxeHw';
 
 var map = new mapboxgl.Map({
   container: 'js-map',

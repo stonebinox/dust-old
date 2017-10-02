@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const geoip = require('geoip-lite');
 
 exports.index = (req, res) => {
@@ -6,6 +7,7 @@ exports.index = (req, res) => {
 
   res.render('home', {
     fixedHeader: true,
+    isDeveloper: _.get(req, 'user.isDeveloper', false),
     // if default ip is localhost, just center it in amsterdam
     location: lookup && lookup.ll ? lookup.ll : [52.3637099, 4.8810739]
   });

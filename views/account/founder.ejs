@@ -1,3 +1,8 @@
+<div class="row text-left avatar-change">
+  <div class="col-md-12">
+    If you're a non-technical founder who wants to find developers to make your MVPs, please fill up the form below. We'll hopefully need just a few hours to approve your profile.
+  </div>
+</div>
 <form class="settings-form" method="POST" action="/settings/profile">
   <input type="hidden" name="_csrf" value="<%- _csrf %>"/>
   <div class="row">
@@ -85,6 +90,6 @@
   </div>
 
   <div class="text-center">
-    <button class="btn btn-wd btn-info btn-round" type="submit"><%= user.verified ? 'Save' : 'Submit for Review' %></button>
+    <button class="btn btn-wd btn-success btn-round" type="submit"><%= user.verified ? 'Save' : 'Submit for Review' %></button>
   </div>
 </form>

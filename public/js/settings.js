@@ -3,7 +3,9 @@
 
 const MapboxClient = require('mapbox');
 
-const token = 'pk.eyJ1Ijoic2FiYXJhc2FiYSIsImEiOiJjajd3MmowMW81Y2t3MndvMjA2Y3BmYWhlIn0.cPBB7UP-sNjWYRqumJCQXA';
+// My token..
+// const token = 'pk.eyJ1Ijoic2FiYXJhc2FiYSIsImEiOiJjajd3MmowMW81Y2t3MndvMjA2Y3BmYWhlIn0.cPBB7UP-sNjWYRqumJCQXA';
+const token = 'pk.eyJ1IjoiZHVzdGhxIiwiYSI6ImNqODQ2bDd0dzA0cncyd281czJwMHVrbHoifQ.5FSMgQ7ahvwhmHGLFyxeHw';
 const client = new MapboxClient(token);
 
 $('.js-location').autoComplete({

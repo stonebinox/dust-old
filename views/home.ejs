@@ -12,7 +12,11 @@
   <div class="main">
     <div class="map-container section section-buttons">
       <div class="tagline">
-        Meet awesome developers who can build an MVP for your idea in a few days for a few hundred dollars
+        <% if (isDeveloper) { %>
+          Meet awesome non-technical founders who are looking for developers to build MVPs for a few hundred dollars, in a few days.
+        <% } else { %>
+          Meet awesome developers who can build an MVP for your idea for a few hundred dollars, in a few days.
+        <% } %>
       </div>
       <div id='js-map' class='map home-map'> </div>
     </div>
@@ -29,15 +33,15 @@
                 </button>
             </div>
             <div class="modal-body">
-              Thanks for signing up to dust, if you are a developer please compleate your profile in your settings page.
+              Thanks for signing up to Dust. You'll need to quickly complete your profile to start chatting with others. Please select one of the options below and we'll take you straight to your profile.
             </div>
             <div class="modal-footer">
                 <div class="left-side">
-                    <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Later</button>
+                    <a href="/settings" class="btn btn-success btn-link">I'm a developer</a>
                 </div>
                 <div class="divider"></div>
                 <div class="right-side">
-                    <a href="/settings" class="btn btn-success btn-link">Setup Profile</a>
+                    <a href="/settings" class="btn btn-success btn-link">I'm a non-technical founder</a>
                 </div>
             </div>
         </div>

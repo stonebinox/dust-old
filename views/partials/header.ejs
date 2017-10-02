@@ -16,6 +16,9 @@
                 <%- user.profile.firstName || user.email || user.id %> <b class="caret"></b>
               </button>
               <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
+                  <% if (isAdmin) { %>
+                    <li class="dropdown-item"><a href="/admin">Admin</a></li>
+                  <% } %>
                   <li class="dropdown-item"><a href="/settings">Settings</a></li>
                   <li class="dropdown-item"><a href="/messages">Messages</a></li>
                   <div class="dropdown-divider"></div>

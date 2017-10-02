@@ -21,6 +21,7 @@ const ejs = require('ejs-mate');
 const requestIp = require('request-ip');
 const socketEvents = require('./socket');
 const md5File = require('md5-file');
+const adminMiddleware = require('./middlewares/isAdmin');
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -99,6 +100,7 @@ app.use(lusca.xframe('SAMEORIGIN'));
 app.use(lusca.xssProtection(true));
 app.use((req, res, next) => {
   res.locals.user = req.user;
+  res.locals.isAdmin = adminMiddleware.adminList.includes(req.user.email);
   next();
 });
 app.use((req, res, next) => {

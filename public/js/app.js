@@ -23,7 +23,7 @@ var createPopup = function(name, days, price, id, isAdmin, isOwn, isDeveloper) {
     return new mapboxgl.Popup()
       .setHTML(`
         <h3>${name}</h3>
-        <div>Thats you!</div>
+        <div>That's you!</div>
       `)
   }
 

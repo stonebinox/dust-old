@@ -74,7 +74,7 @@ exports.index = async (req, res) => {
 
 exports.message = (req, res) => {
   if (!req.user) {
-    req.redirect('/login');
+    req.redirect('/signup');
   }
 
   if (!req.user.verified) {

@@ -48,8 +48,8 @@ exports.approveUser = async (req, res, next) => {
 
       const mailOptions = {
         to: user.email,
-        from: 'hello@dusthq.com',
-        subject: 'Your DustHQ has been approved',
+        from: 'dust@dusthq.com',
+        subject: 'Your Dust Account has been approved',
         text: 'Hello,\n\nThis is just a confirmation that your DustHQ account has just been approved.\n'
       };
 

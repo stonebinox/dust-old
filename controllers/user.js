@@ -351,8 +351,8 @@ exports.postReset = (req, res, next) => {
     if (!user) { return; }
     const mailOptions = {
       to: user.email,
-      from: 'hello@dusthq.com',
-      subject: 'Your DustHQ password has been changed',
+      from: 'dust@dusthq.com',
+      subject: 'Your Dust password has been changed',
       text: `Hello,\n\nThis is a confirmation that the password for your account ${user.email} has just been changed.\n`
     };
     return transporter.sendMail(mailOptions)
@@ -419,8 +419,8 @@ exports.postForgot = (req, res, next) => {
     const token = user.passwordResetToken;
     const mailOptions = {
       to: user.email,
-      from: 'hello@dusthq.com',
-      subject: 'Reset your password on DustHQ',
+      from: 'dust@dusthq.com',
+      subject: 'Reset your password on Dust',
       text: `You are receiving this email because you (or someone else) have requested the reset of the password for your account.\n\n
         Please click on the following link, or paste this into your browser to complete the process:\n\n
         http://${req.headers.host}/reset/${token}\n\n

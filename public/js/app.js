@@ -29,7 +29,7 @@ var createPopup = function(name, days, price, id, isAdmin, isOwn, isDeveloper) {
       .setHTML(`
         <form action="/api/conversation/${id}" method="POST">
           <input type="hidden" name="_csrf" value="${window.csrf}"/>
-          <h3>${name}</h3><div>Dust Founder</div><div>ask me anything!</div>
+          <h3>${name}</h3><div>Dust Co-Founder</div><div>Ask me anything!</div>
           <button class="cta" type="submit">Chat</button>
         </form>
       `)

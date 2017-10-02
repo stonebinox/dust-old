@@ -153,7 +153,7 @@ exports.reply = (req, res) => {
 
     reply.save((err) => {
       if (err) {
-        res.status(500).send({ error: err });
+        res.redirect('/');
       }
 
       res.status(200).json({ message: 'Reply successfully sent!' });

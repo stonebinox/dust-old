@@ -10,7 +10,8 @@ var map = new mapboxgl.Map({
 });
 
 var geocoder = new MapboxGeocoder({
-  accessToken: mapboxgl.accessToken
+  accessToken: mapboxgl.accessToken,
+  placeholder: 'Search locations'
 });
 
 map.addControl(geocoder);

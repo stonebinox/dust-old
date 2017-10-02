@@ -48,13 +48,13 @@
   <div class="row">
     <div class="col-md-6 col-sm-6">
       <div class="form-group">
-        <label>ProductHunt Profile</label>
+        <label>Product Hunt profile</label>
         <input value="<%- user.profile.producthunt %>" name="producthunt" class="form-control border-input" placeholder="Your producthunt profile" type="text">
       </div>
     </div>
     <div class="col-md-6 col-sm-6">
       <div class="form-group">
-        <label>Twitter</label>
+        <label>Twitter profile</label>
         <input value="<%- user.profile.twitter %>" name="twitter" class="form-control border-input" placeholder="Your twitter profile" type="text">
       </div>
     </div>
@@ -62,23 +62,23 @@
   <div class="row">
     <div class="col-md-6 col-sm-6">
       <div class="form-group">
-        <label>Maximum MVP price range</label>
+        <label>I need an MVP built for</label>
         <select class="form-control border-input" name="priceToBuildMVP">
           <option value="$0-$200" <%= user.mvpSettings.price === '$0-$200' ? 'selected' : ''%>>$0-$200</option>
           <option value="$200-$400" <%= user.mvpSettings.price === '$200-$400' ? 'selected' : ''%>>$200-$400</option>
-          <option value="$400-%600" <%= user.mvpSettings.price === '$400-%600' ? 'selected' : ''%>>$400-%600</option>
+          <option value="$400-$600" <%= user.mvpSettings.price === '$400-$600' ? 'selected' : ''%>>$400-$600</option>
           <option value="More than $600" <%= user.mvpSettings.price === 'More than $600' ? 'selected' : ''%>>More than $600</option>
         </select>
       </div>
     </div>
     <div class="col-md-6 col-sm-6">
       <div class="form-group">
-        <label>Maximum days to build MVP</label>
+        <label>I need an MVP built in</label>
         <select class="form-control border-input" name="daysToBuildMVP">
-          <option value="0-5" <%= user.mvpSettings.days === '0-5' ? 'selected' : '' %>>0-5</option>
-          <option value="5-10" <%= user.mvpSettings.days === '5-10' ? 'selected' : '' %>>5-10</option>
-          <option value="10-15" <%= user.mvpSettings.days === '10-15' ? 'selected' : '' %>>10-15</option>
-          <option value="More than 15" <%= user.mvpSettings.days === 'More than 15' ? 'selected' : '' %>>More than 15</option>
+          <option value="0-5" <%= user.mvpSettings.days === '0-5' ? 'selected' : '' %>>0-5 days</option>
+          <option value="5-10" <%= user.mvpSettings.days === '5-10' ? 'selected' : '' %>>5-10 days</option>
+          <option value="10-15" <%= user.mvpSettings.days === '10-15' ? 'selected' : '' %>>10-15 days</option>
+          <option value="More than 15" <%= user.mvpSettings.days === 'More than 15' ? 'selected' : '' %>>More than 15 days</option>
         </select>
       </div>
     </div>

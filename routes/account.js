@@ -9,6 +9,7 @@ router.post('/settings/profile', passportConfig.isAuthenticated, userController.
 router.post('/settings/profile/developer', passportConfig.isAuthenticated, userController.postUpdateProfileDeveloper);
 router.post('/settings/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
 router.post('/settings/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
+router.post('/settings/setType', passportConfig.isAuthenticated, userController.postSetType);
 router.get('/settings/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 
 module.exports = router;

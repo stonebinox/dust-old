@@ -28,9 +28,6 @@
                   <li class="nav-item">
                     <a aria-expanded="true" class="nav-link active" data-toggle="tab" href="#home" role="tab">Non-technical founder Profile</a>
                   </li>
-                  <li class="nav-item">
-                    <a aria-expanded="false" class="nav-link" data-toggle="tab" href="#developer" role="tab">Developer Profile</a>
-                  </li>
                 <% } else { %>
                   <li class="nav-item">
                     <a aria-expanded="true" class="nav-link active" data-toggle="tab" href="#developer" role="tab">Developer Profile</a>
@@ -48,10 +45,6 @@
             <% if (!user.isDeveloper) { %>
               <div aria-expanded="true" class="tab-pane active" id="home" role="tabpanel">
                 <%- partial('account/founder') %>
-              </div>
-
-              <div aria-expanded="false" class="tab-pane" id="developer" role="tabpanel">
-                <%- partial('account/developer') %>
               </div>
             <% } else { %>
               <div aria-expanded="true" class="tab-pane active" id="developer" role="tabpanel">

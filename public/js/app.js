@@ -109,3 +109,17 @@ if (getQueryParam('welcome')) {
 if (getQueryParam('unverified')) {
   $('#js-unverified-modal').modal('show');
 }
+
+$.ajaxSetup({
+  headers:
+  { 'X-CSRF-TOKEN': window.csrf }
+});
+
+$('.js-set-profile').on('click', function(e) {
+  var isDev = $(this).attr('data-isdev');
+
+  $.post('/settings/setType', { isDeveloper: isDev })
+    .done(function(data) {
+      window.location.href = '/settings'
+    });
+});

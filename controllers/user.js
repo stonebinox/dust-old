@@ -11,7 +11,6 @@ const transportOptions = {
   }
 };
 
-
 const transporter = nodemailer.createTransport(sgTransport(transportOptions));
 
 /**
@@ -130,6 +129,24 @@ exports.getSettings = (req, res) => {
   res.render('account/settings', {
     title: 'Settings',
     fixedHeader: true
+  });
+};
+
+exports.postSetType = (req, res, next) => {
+  const isDeveloper = req.body.isDeveloper;
+
+  User.findById(req.user.id, (err, user) => {
+    if (err) { next(err); }
+
+    user.isDeveloper = isDeveloper;
+
+    user.save((err) => {
+      if (err) {
+        next(err);
+      }
+
+      res.send(200);
+    });
   });
 };
 

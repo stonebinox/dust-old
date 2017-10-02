@@ -29,7 +29,7 @@
   cursor: pointer;
 }
 
-.mapboxgl-marker.isAdmin {
+.mapboxgl-marker.isNonTechnicalFounder {
   background-image: url('/marker_admin.png') !important;
 }
 

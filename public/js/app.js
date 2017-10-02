@@ -64,15 +64,17 @@ $.getJSON('/api/developers', function(res) {
     res.data.map(person => {
       var el = document.createElement('div');
 
+      el.className = '';
+
       // Show different marker for admins
       if (person.isAdmin) {
-        el.className = 'isAdmin';
+        el.className = 'isFounder';
       } else if (person.isOwn) {
         el.className = 'isOwn';
       } else if (person.isDeveloper) {
         el.className = 'isDeveloper';
-      } else {
-        el.className = 'isFounder';
+      } else if(el.className === '') {
+        el.className = 'isNonTechnicalFounder';
       }
 
       return new mapboxgl.Marker(el, { offset: [-11, -11] })

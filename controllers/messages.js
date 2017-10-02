@@ -59,6 +59,10 @@ const getOtherParticipant = (conversationId, currentUserId) => {
 };
 
 exports.index = async (req, res) => {
+  if (!req.user.verified) {
+    return res.redirect('/?unverified=true');
+  }
+
   const conversations = await getConversations(req.user._id);
 
   res.render('messages', {
@@ -71,6 +75,10 @@ exports.index = async (req, res) => {
 exports.message = (req, res) => {
   if (!req.user) {
     req.redirect('/login');
+  }
+
+  if (!req.user.verified) {
+    return res.redirect('/?unverified=true');
   }
 
   Message.find({ conversationId: req.params.conversationId })
@@ -104,6 +112,10 @@ exports.message = (req, res) => {
 };
 
 exports.createConversation = (req, res) => {
+  if (!req.user.verified) {
+    return res.redirect('/?unverified=true');
+  }
+
   Conversation.findOne({ $or: [
     { participants: [req.user._id, req.params.recipient] },
     { participants: [req.params.recipient, req.user._id] }

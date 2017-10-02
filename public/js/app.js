@@ -41,7 +41,7 @@ var createPopup = function(name, days, price, id, isAdmin, isOwn, isDeveloper) {
   if (isDeveloper) {
     return new mapboxgl.Popup()
       .setHTML(`
-        <form action="/api/conversation/${id}" method="POST">
+        <form action="/api/conversation/${id}" method="POST" class="js-contact-form">
           <input type="hidden" name="_csrf" value="${window.csrf}"/>
           <h3>${name}</h3><div>Last MVP built</div><div>in ${days} days for ${price}</div>
           <button class="cta" type="submit">Request Chat</button>
@@ -50,7 +50,7 @@ var createPopup = function(name, days, price, id, isAdmin, isOwn, isDeveloper) {
   } else {
     return new mapboxgl.Popup()
       .setHTML(`
-        <form action="/api/conversation/${id}" method="POST">
+        <form action="/api/conversation/${id}" method="POST" class="js-contact-form">
           <input type="hidden" name="_csrf" value="${window.csrf}"/>
           <h3>${name}</h3><div>Needs MVP built</div><div>in ${days} days for ${price}</div>
           <button class="cta" type="submit">Request Chat</button>
@@ -104,4 +104,8 @@ function getQueryParam(name, url) {
 
 if (getQueryParam('welcome')) {
   $('#myModal').modal('show');
+}
+
+if (getQueryParam('unverified')) {
+  $('#js-unverified-modal').modal('show');
 }

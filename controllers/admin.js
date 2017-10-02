@@ -34,6 +34,30 @@ exports.getAdmin = async (req, res) => {
   });
 };
 
+const getCopyForEmail = (isDev) => {
+  if (isDev) {
+    return `
+Hi, \n\n
+
+Your profile has been approved and you can now log in to your account and start chatting with non-technical co-founders all over the world. \n\n
+
+The 3 purple pins on the map are Dust's co-founders. Feel free to click any of them and start chatting with us with any questions you may have. \n\n
+
+The Dust Team.
+    `;
+  }
+
+  return `
+Hi, \n\n
+
+Your profile has been approved and you can now log in to your account and start chatting with developers all over the world. \n\n
+
+The 3 purple pins on the map are Dust's co-founders. Feel free to click any of them and start chatting with us with any questions you may have. \n\n
+
+The Dust Team.
+  `;
+};
+
 exports.approveUser = async (req, res, next) => {
   User.findById(req.params.id, (err, user) => {
     if (err) { return next(err); }
@@ -50,7 +74,7 @@ exports.approveUser = async (req, res, next) => {
         to: user.email,
         from: 'dust@dusthq.com',
         subject: 'Your Dust Account has been approved',
-        text: 'Hello,\n\nThis is just a confirmation that your DustHQ account has just been approved.\n'
+        text: getCopyForEmail(user.isDeveloper)
       };
 
       transporter.sendMail(mailOptions)

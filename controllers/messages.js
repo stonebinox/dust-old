@@ -144,17 +144,21 @@ exports.createConversation = (req, res) => {
 };
 
 exports.reply = (req, res) => {
-  const reply = new Message({
-    conversationId: req.params.conversationId,
-    body: req.body.composedMessage,
-    author: req.user._id
-  });
+  try {
+    const reply = new Message({
+      conversationId: req.params.conversationId,
+      body: req.body.composedMessage,
+      author: req.user._id
+    });
 
-  reply.save((err) => {
-    if (err) {
-      res.status(500).send({ error: err });
-    }
+    reply.save((err) => {
+      if (err) {
+        res.status(500).send({ error: err });
+      }
 
-    res.status(200).json({ message: 'Reply successfully sent!' });
-  });
+      res.status(200).json({ message: 'Reply successfully sent!' });
+    });
+  } catch (e) {
+    res.redirect('/');
+  }
 };

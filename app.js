@@ -1,6 +1,7 @@
 /**
  * Module dependencies.
  */
+const _ = require('lodash');
 const express = require('express');
 const compression = require('compression');
 const session = require('express-session');
@@ -99,8 +100,10 @@ app.use((req, res, next) => {
 app.use(lusca.xframe('SAMEORIGIN'));
 app.use(lusca.xssProtection(true));
 app.use((req, res, next) => {
+  const email = _.get(req, 'user.email', '');
+
   res.locals.user = req.user;
-  res.locals.isAdmin = adminMiddleware.adminList.includes(req.user.email);
+  res.locals.isAdmin = adminMiddleware.adminList.includes(email);
   next();
 });
 app.use((req, res, next) => {

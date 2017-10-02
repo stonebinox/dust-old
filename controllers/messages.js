@@ -20,19 +20,23 @@ const getConversations = (userId) => {
 
         // Set up empty array to hold conversations + most recent message
         const fullConversations = [];
-        conversations.forEach((conversation) => {
-          const el = _.find(conversation.participants, (e) => {
-            return e._id.toString() !== userId.toString();
+        try {
+          conversations.forEach((conversation) => {
+            const el = _.find(conversation.participants, (e) => {
+              return e._id.toString() !== userId.toString();
+            });
+
+            fullConversations.push(Object.assign({}, el.toObject(), {
+              conversationId: conversation._id
+            }));
+
+            if (fullConversations.length === conversations.length) {
+              resolve(fullConversations);
+            }
           });
-
-          fullConversations.push(Object.assign({}, el.toObject(), {
-            conversationId: conversation._id
-          }));
-
-          if (fullConversations.length === conversations.length) {
-            resolve(fullConversations);
-          }
-        });
+        } catch (e) {
+          resolve([]);
+        }
       });
   });
 };

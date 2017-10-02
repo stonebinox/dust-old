@@ -41,7 +41,7 @@ Hi, \n\n
 
 Your profile has been approved and you can now log in to your account and start chatting with non-technical co-founders all over the world. \n\n
 
-The 3 purple pins on the map are Dust's co-founders. Feel free to click any of them and start chatting with us with any questions you may have. \n\n
+The 3 black pins on the map are Dust's co-founders. Feel free to click any of them and start chatting with us with any questions you may have. \n\n
 
 The Dust Team.
     `;
@@ -52,7 +52,7 @@ Hi, \n\n
 
 Your profile has been approved and you can now log in to your account and start chatting with developers all over the world. \n\n
 
-The 3 purple pins on the map are Dust's co-founders. Feel free to click any of them and start chatting with us with any questions you may have. \n\n
+The 3 black pins on the map are Dust's co-founders. Feel free to click any of them and start chatting with us with any questions you may have. \n\n
 
 The Dust Team.
   `;

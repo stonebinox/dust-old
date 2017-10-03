@@ -33,7 +33,7 @@ var createPopup = function(name, days, price, id, isAdmin, isOwn, isDeveloper) {
         <form action="/api/conversation/${id}" method="POST">
           <input type="hidden" name="_csrf" value="${window.csrf}"/>
           <h3>${name}</h3><div>Dust Co-Founder</div><div>Ask me anything!</div>
-          <button class="cta" type="submit">Chat</button>
+          <button class="cta" type="submit">Start Chat</button>
         </form>
       `)
   }
@@ -44,7 +44,7 @@ var createPopup = function(name, days, price, id, isAdmin, isOwn, isDeveloper) {
         <form action="/api/conversation/${id}" method="POST" class="js-contact-form">
           <input type="hidden" name="_csrf" value="${window.csrf}"/>
           <h3>${name}</h3><div>Last MVP built</div><div>in ${days} days for ${price}</div>
-          <button class="cta" type="submit">Request Chat</button>
+          <button class="cta" type="submit">Start Chat</button>
         </form>
       `)
   } else {
@@ -53,7 +53,7 @@ var createPopup = function(name, days, price, id, isAdmin, isOwn, isDeveloper) {
         <form action="/api/conversation/${id}" method="POST" class="js-contact-form">
           <input type="hidden" name="_csrf" value="${window.csrf}"/>
           <h3>${name}</h3><div>Needs MVP built</div><div>in ${days} days for ${price}</div>
-          <button class="cta" type="submit">Request Chat</button>
+          <button class="cta" type="submit">Start Chat</button>
         </form>
       `)
   }

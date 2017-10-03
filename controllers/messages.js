@@ -156,7 +156,9 @@ exports.reply = (req, res) => {
         res.redirect('/');
       }
 
-      res.status(200).json({ message: 'Reply successfully sent!' });
+      if (!res.headersSent) {
+        res.status(200).json({ message: 'Reply successfully sent!' });
+      }
     });
   } catch (e) {
     res.redirect('/');

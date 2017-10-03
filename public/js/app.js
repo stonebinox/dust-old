@@ -8,7 +8,7 @@ var map = new mapboxgl.Map({
   container: 'js-map',
   style: 'mapbox://styles/mapbox/streets-v9',
   center: window.initialLocation.reverse(),
-  zoom: 12
+  zoom: 8
 });
 
 var geocoder = new MapboxGeocoder({

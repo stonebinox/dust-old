@@ -26,12 +26,14 @@ const getConversations = (userId) => {
               return e._id.toString() !== userId.toString();
             });
 
-            fullConversations.push(Object.assign({}, el.toObject(), {
+            fullConversations.push(Object.assign({}, el ? el.toObject() : {}, {
               conversationId: conversation._id
             }));
 
             if (fullConversations.length === conversations.length) {
-              resolve(fullConversations);
+              // Ignore all conversations that somewhow failed to be created.
+              const filtered = fullConversations.filter(e => e.email);
+              resolve(filtered);
             }
           });
         } catch (e) {

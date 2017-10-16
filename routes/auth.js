@@ -12,6 +12,9 @@ router.get('/reset/:token', userController.getReset);
 router.post('/reset/:token', userController.postReset);
 router.get('/signup', userController.getSignup);
 router.post('/signup', userController.postSignup);
+router.post('/founder/signup', userController.postFounderSignup);
+router.get('/dev/signup', userController.getDeveloperSignup);
+router.post('/dev/signup', userController.postDeveloperSignup);
 
 module.exports = router;
 

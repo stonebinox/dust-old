@@ -2,6 +2,13 @@ const _ = require('lodash');
 const geoip = require('geoip-lite');
 
 exports.index = (req, res) => {
+  res.render('index', {
+    title: 'Welcome',
+    fixedHeader: true
+  });
+};
+
+exports.home = (req, res) => {
   const ip = req.clientIp;
   const lookup = geoip.lookup(ip);
 

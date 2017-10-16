@@ -1,7 +1,8 @@
 const adminList = [
   'ignacio@dusthq.com',
   'saad@dusthq.com',
-  'walid@dusthq.com'
+  'walid@dusthq.com',
+  'sammysgame.dev@gmail.com'
 ];
 
 const isAdmin = (req, res, next) => {

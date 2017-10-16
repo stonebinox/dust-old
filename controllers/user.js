@@ -4,6 +4,7 @@ const nodemailer = require('nodemailer');
 const sgTransport = require('nodemailer-sendgrid-transport');
 const passport = require('passport');
 const User = require('../models/User');
+const Project = require('../models/Project');
 
 const transportOptions = {
   auth: {
@@ -455,4 +456,128 @@ exports.postForgot = (req, res, next) => {
     .then(sendForgotPasswordEmail)
     .then(() => res.redirect('/forgot'))
     .catch(next);
+};
+
+/**
+ * POST /founder/signup
+ * Process founder signup
+ */
+exports.postFounderSignup = (req, res, next) => {
+  req.assert('firstName', 'First name can not be empty').notEmpty();
+  req.assert('lastName', 'Last name can not be empty').notEmpty();
+  req.assert('mvp_description', 'MVP Description can not be empty').notEmpty();
+  req.assert('email', 'Email is not valid').isEmail();
+  req.assert('password', 'Password must be at least 4 characters long').len(4);
+  req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
+  req.sanitize('email').normalizeEmail({ gmail_remove_dots: false });
+
+  const errors = req.validationErrors();
+
+  if (errors) {
+    req.flash('errors', errors);
+    return res.redirect('/founder/signup');
+  }
+
+  const user = new User({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    isDeveloper: false,
+    password: req.body.password,
+    timezone: req.body.timezone
+  });
+
+  User.findOne({ email: req.body.email }, (err, existingUser) => {
+    if (err) { return next(err); }
+    if (existingUser) {
+      req.flash('errors', { msg: 'Account with that email address already exists, you should login or reset your password' });
+      return res.redirect('/signup');
+    }
+    user.save((err) => {
+      if (err) { return next(err); }
+      const project = new Project({
+        email: req.body.email,
+        project: req.body.mvp_description,
+        timezone: req.body.timezone
+      });
+      project.save((err) => {
+        if (err) { return next(err); }
+        res.redirect('http://paypal.me/paydusthq');
+      });
+      
+      // req.logIn(user, (err) => {
+      //   if (err) {
+      //     return next(err);
+      //   }
+      //   res.redirect('http://paypal.me/paydusthq');
+      // });
+    });
+  });
+};
+
+
+/**
+ * GET /dev/signup
+ * Show Developer Sign up Page
+ */
+exports.getDeveloperSignup = (req, res) => {
+  if (req.isAuthenticated()) {
+    return res.redirect('/');
+  }
+  res.render('account/dev-signup', {
+    title: 'Developer Registration',
+    fullscreen: true,
+    fixedHeader: true
+  });
+};
+
+/**
+ * POST /dev/signup
+ * Process The Developer Sign up Form
+ */
+exports.postDeveloperSignup = (req, res, next) => {
+  req.assert('email', 'Email is not valid').isEmail();
+  req.assert('password', 'Password must be at least 4 characters long').len(4);
+  req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
+  req.sanitize('email').normalizeEmail({ gmail_remove_dots: false });
+
+  const errors = req.validationErrors();
+
+  if (errors) {
+    req.flash('errors', errors);
+    return res.redirect('/dev/signup');
+  }
+
+  const user = new User({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    location: req.body.location,
+    website: req.body.website,
+    title: req.body.title,
+    twitter: req.body.twitter,
+    producthunt: req.body.producthunt,
+    days: req.body.daysToBuildMVP,
+    price: req.body.priceToBuildMVP,
+    password: req.body.password,
+    timezone: req.body.timezone
+  });
+
+  User.findOne({ email: req.body.email }, (err, existingUser) => {
+    if (err) { return next(err); }
+    if (existingUser) {
+      req.flash('errors', { msg: 'Account with that email address already exists.' });
+      return res.redirect('/dev/signup');
+    }
+    user.save((err) => {
+      if (err) { return next(err); }
+      res.redirect('https://docs.google.com/document/d/1gGv0ePSdYbfYxatjZs7dAXQwmdZxcFZbruBF36GZggo/edit');
+      // req.logIn(user, (err) => {
+      //   if (err) {
+      //     return next(err);
+      //   }
+      //   res.redirect('/?welcome=true');
+      // });
+    });
+  });
 };

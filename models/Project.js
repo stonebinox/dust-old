@@ -5,6 +5,7 @@ const projectSchema = new mongoose.Schema({
   uid: String,
   email: String,
   project: String,
+  platform: String,
 }, { timestamps: true });
 
 

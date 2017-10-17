@@ -498,6 +498,7 @@ exports.postFounderSignup = (req, res, next) => {
       const project = new Project({
         email: req.body.email,
         project: req.body.mvp_description,
+        platform: req.body.platforms,
         timezone: req.body.timezone
       });
       project.save((err) => {

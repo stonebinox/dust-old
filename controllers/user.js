@@ -475,7 +475,7 @@ exports.postFounderSignup = (req, res, next) => {
 
   if (errors) {
     req.flash('errors', errors);
-    return res.redirect('/founder/signup');
+    return res.redirect('/');
   }
 
   const user = new User({
@@ -491,7 +491,7 @@ exports.postFounderSignup = (req, res, next) => {
     if (err) { return next(err); }
     if (existingUser) {
       req.flash('errors', { msg: 'Account with that email address already exists, you should login or reset your password' });
-      return res.redirect('/signup');
+      return res.redirect('/');
     }
     user.save((err) => {
       if (err) { return next(err); }
@@ -522,7 +522,7 @@ exports.postFounderSignup = (req, res, next) => {
  */
 exports.getDeveloperSignup = (req, res) => {
   if (req.isAuthenticated()) {
-    return res.redirect('/');
+    return res.redirect('/dev/signup');
   }
   res.render('account/dev-signup', {
     title: 'Developer Registration',

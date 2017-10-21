@@ -3,7 +3,7 @@ const hat = require('hat');
 
 const projectSchema = new mongoose.Schema({
   uid: String,
-  email: String,
+  email: { type: String, unique: false },
   project: String,
   platform: String,
 }, { timestamps: true });

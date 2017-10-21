@@ -28,47 +28,71 @@
         <div class="row">
           <div class="col-md-6 offset-md-3">
             <%- partial('partials/flash') %>
-            <form class="register-form" method="POST" action="/founder/signup">
-              <input type="hidden" name="_csrf" value="<%- _csrf %>"/>
-              <div class="form-group">
-                <label for="exampleInputEmail1">First Name</label>
-                <input name="firstName" type="text" class="form-control" id="exampleInputEmail1" placeholder="First Name" required="required">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Last Name</label>
-                <input name="lastName" type="text" class="form-control" id="exampleInputEmail1" placeholder="Last Name" required="required">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Email</label>
-                <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" required="required">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">MVP Description</label>
-                <textarea name="mvp_description" class="form-control" id="exampleInputEmail1" placeholder="MVP Description" required="required"></textarea>
-              </div>
-              <div>
-                <label for="exampleInputEmail1">Select Platforms You Want To Build For:</label>
-                <select multiple class="form-control" id="exampleFormControlSelect2" name="platforms">
-                  <option value="Web">Web</option>
-                  <option value="Desktop">Desktop</option>
-                  <option value="iOS">iOS</option>
-                  <option value="Android">Android</option>
-                  <option value="Apple TV">Apple TV</option>
-                  <option value="Apple Watch">Apple Watch</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Password</label>
-                <input name="password" class="form-control" placeholder="Password" type="password" required="required">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Confirm Password</label>
-                <input name="confirmPassword" class="form-control" placeholder="Password" type="password" required="required">
-              </div>
-              <button type="submit" class="btn btn-danger">Book Your Space!</button>
-              <br>
-              <p>If we can't find a developer to build your MVP within 30 days, we'll refund your $25 booking fee.</p>
-            </form>
+            <% if (!user) { %>
+              <form class="register-form" method="POST" action="/founder/signup">
+                <input type="hidden" name="_csrf" value="<%- _csrf %>"/>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">First Name</label>
+                    <input name="firstName" type="text" class="form-control" id="exampleInputEmail1" placeholder="First Name" required="required">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Last Name</label>
+                    <input name="lastName" type="text" class="form-control" id="exampleInputEmail1" placeholder="Last Name" required="required">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email</label>
+                    <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" required="required">
+                  </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">MVP Description</label>
+                  <textarea name="mvp_description" class="form-control" id="exampleInputEmail1" placeholder="MVP Description" required="required"></textarea>
+                </div>
+                <div>
+                  <label for="exampleInputEmail1">Select Platforms You Want To Build For:</label>
+                  <select multiple class="form-control" id="exampleFormControlSelect2" name="platforms">
+                    <option value="Web">Web</option>
+                    <option value="Desktop">Desktop</option>
+                    <option value="iOS">iOS</option>
+                    <option value="Android">Android</option>
+                    <option value="Apple TV">Apple TV</option>
+                    <option value="Apple Watch">Apple Watch</option>
+                  </select>
+                </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Password</label>
+                    <input name="password" class="form-control" placeholder="Password" type="password" required="required">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Confirm Password</label>
+                    <input name="confirmPassword" class="form-control" placeholder="Password" type="password" required="required">
+                  </div>
+                <button type="submit" class="btn btn-danger" style="margin-top: 30px;">Book Your Space!</button>
+                <br>
+                <p>If we can't find a developer to build your MVP within 30 days, we'll refund your $25 booking fee.</p>
+              </form>            
+            <% } else { %>
+              <form class="register-form" method="POST" action="/mvpsubmit">
+                <input type="hidden" name="_csrf" value="<%- _csrf %>"/>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">MVP Description</label>
+                  <textarea name="mvp_description" class="form-control" id="exampleInputEmail1" placeholder="MVP Description" required="required"></textarea>
+                </div>
+                <div>
+                  <label for="exampleInputEmail1">Select Platforms You Want To Build For:</label>
+                  <select multiple class="form-control" id="exampleFormControlSelect2" name="platforms">
+                    <option value="Web">Web</option>
+                    <option value="Desktop">Desktop</option>
+                    <option value="iOS">iOS</option>
+                    <option value="Android">Android</option>
+                    <option value="Apple TV">Apple TV</option>
+                    <option value="Apple Watch">Apple Watch</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-danger" style="margin-top: 30px;">Book Your Space!</button>
+                <br>
+                <p>If we can't find a developer to build your MVP within 30 days, we'll refund your $25 booking fee.</p>
+              </form> 
+            <% } %>
           </div>
         </div>
         <hr>

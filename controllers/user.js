@@ -582,3 +582,16 @@ exports.postDeveloperSignup = (req, res, next) => {
     });
   });
 };
+
+exports.mvpform = (req, res, next) => {
+  const project = new Project({
+    email: req.user.email,
+    project: req.body.mvp_description,
+    platform: req.body.platforms,
+    timezone: req.body.timezone
+  });
+  project.save((err) => {
+    if (err) { return next(err); }
+    res.redirect('http://paypal.me/paydusthq');
+  });
+};

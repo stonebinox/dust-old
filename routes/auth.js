@@ -3,8 +3,8 @@ const userController = require('../controllers/user');
 
 const router = express.Router();
 
-router.get('/log', userController.getLogin);
-router.post('/log', userController.postLogin);
+router.get('/login', userController.getLogin);
+router.post('/login', userController.postLogin);
 router.get('/logout', userController.logout);
 router.get('/forgot', userController.getForgot);
 router.post('/forgot', userController.postForgot);
@@ -15,6 +15,7 @@ router.post('/no-signup', userController.postSignup);
 router.post('/founder/signup', userController.postFounderSignup);
 router.get('/dev/signup', userController.getDeveloperSignup);
 router.post('/dev/signup', userController.postDeveloperSignup);
+router.post('/mvpsubmit', userController.mvpform);
 
 module.exports = router;
 

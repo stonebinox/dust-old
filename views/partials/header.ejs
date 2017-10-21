@@ -31,6 +31,11 @@
         <li class="nav-item">
           <a href="https://docs.google.com/document/d/1-N2doVbOrnS6oK7GiVwz4SbJQ98xT4mLfeNnog0ewy0/edit" target="_blank" class="nav-link">Help</a>
         </li>
+        <% if (!user) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+        <% } %>
         <li class="nav-item">
           <a href="https://twitter.com/TheDustMakers" target="_blank" class="btn btn-neutral btn-just-icon btn-round btn-twitter twitter-sharrre">
             <i class="fa fa-twitter" aria-hidden="true"></i>
@@ -46,18 +51,15 @@
                     <li class="dropdown-item"><a href="/admin">Admin</a></li>
                     <li class="dropdown-item"><a href="#">Bookings</a></li>
                   <% } %>
-                  <li class="dropdown-item"><a href="/settings">Settings</a></li>
+                  <!-- <li class="dropdown-item"><a href="/settings">Settings</a></li>
                   <li class="dropdown-item"><a href="/messages">Messages</a></li>
-                  <div class="dropdown-divider"></div>
+                  <div class="dropdown-divider"></div> -->
                   <li class="dropdown-item"><a href="/logout">Logout</a></li>
               </ul>
           </li>
         <% } else { %>
           <!-- <li class="nav-item">
             <a class="nav-link" href="/signup">Signup</a>
-          </li> -->
-          <!-- <li class="nav-item">
-            <a class="btn btn-danger btn-round" href="/login">Login</a>
           </li> -->
           <li class="nav-item">
             <a class="btn btn-danger btn-round" href="/dev/signup">Developer Signup</a>

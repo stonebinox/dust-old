@@ -7,5 +7,6 @@ router.get('/', staticController.index);
 router.get('/home', staticController.home);
 router.get('/about', staticController.about);
 router.get('/terms', staticController.terms);
+router.get('/featured_developers', staticController.featured_developers);
 
 module.exports = router;

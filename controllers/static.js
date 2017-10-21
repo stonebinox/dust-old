@@ -39,3 +39,10 @@ exports.terms = (req, res) => {
     fixedHeader: true
   });
 };
+
+exports.featured_developers = (req, res) => {
+  res.render('featured_developers', {
+    title: 'Featured Developers',
+    fixedHeader: true
+  })
+};

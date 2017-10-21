@@ -29,7 +29,7 @@ exports.missingPage = (req, res) => {
 exports.about = (req, res) => {
   res.render('about', {
     title: 'About',
-    animateNavbar: true
+    fixedHeader: true
   });
 };
 
@@ -46,3 +46,10 @@ exports.featured_developers = (req, res) => {
     fixedHeader: true
   })
 };
+
+exports.mvps = (req, res) => {
+  res.render('mvps', {
+    title: 'MVPs',
+    fixedHeader: true
+  })
+}

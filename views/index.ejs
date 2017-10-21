@@ -152,4 +152,39 @@
     </div>
 </div>
 
+<div class="modal fade product_view" id="product_view">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 product_img">
+                        <img src="/birthday.jpeg" class="img-responsive" width="350px">
+                    </div>
+                    <div class="col-md-6 product_content">
+                        <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                        <h4>Dust is 1 month old!</h4><br>
+                        <p>It’s Dust’s 1-month birthday today and we’re offering a 10% discount on MVPs ordered today — only $359.10 to get yours within a few days, instead of the standard MVP rate of $399.
+                        Complete the booking form to get started!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+  .product_view .modal-dialog{max-width: 800px; width: 100%;}
+  .pre-cost{text-decoration: line-through; color: #a5a5a5;}
+  .space-ten{padding: 10px 0;}
+</style>
+
 <%- partial('partials/footer') %>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#product_view').modal('show');
+    });
+</script>

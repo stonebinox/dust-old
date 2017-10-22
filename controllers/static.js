@@ -52,4 +52,18 @@ exports.mvps = (req, res) => {
     title: 'MVPs',
     fixedHeader: true
   })
-}
+};
+
+exports.help = (req, res) => {
+  res.render('help', {
+    title: 'Help Guide',
+    fixedHeader: true
+  })
+};
+
+exports.resources = (req, res) => {
+  res.render('resources', {
+    title: 'Resources',
+    fixedHeader: true
+  })
+};

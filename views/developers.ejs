@@ -1,0 +1,78 @@
+<% layout('layout') -%>
+
+<link href='/css/app.css?<%= hashCSSapp %>' rel='stylesheet' />
+
+<div class="team-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2 text-center">
+        <h2 class="title">Developers</h2>
+        <!-- <h5 class="description">Users pending review</h5> -->
+      </div>
+    </div>
+    <div class="space-top"></div>
+    <div class="row messages-grid">
+    <%- partial('partials/flash') %>
+
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Last Updated</th>
+              <!-- <th class="text-right">Actions</th> -->
+            </tr>
+          </thead>
+          <tbody>
+
+            <% users.forEach(function(user) {%>
+              <tr>
+                <td><%= user.profile.firstName %> <%= user.profile.lastName %></td>
+                <td><%= user.profile.email %></td>
+                <td><%= new Date(user.updatedAt).toLocaleString() %></td>
+                <!-- <td class="td-actions text-right">
+                  <button data-toggle="modal" data-target="#modal<%= user._id%>" class="btn btn-info btn-link btn-sm" data-original-title="View Profile" data-placement="top" data-toggle="tooltip" title=""><i class="fa fa-user"></i></button>
+                  <a href="/admin/user/approve/<%= user._id %>" class="btn btn-success btn-link btn-sm" data-original-title="Approve" data-placement="top" data-toggle="tooltip" title=""><i class="fa fa-check"></i></a>
+                </td>
+
+                <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="modal<%= user._id%>" role="dialog" tabindex="-1">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title text-center" id="exampleModalLabel">User</h5><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                      </div>
+                      <div class="modal-body">
+                        <h5><%= user.profile.firstName %> <%= user.profile.lastName %></h5>
+                        <p>id= <%= user._id %></p>
+                        <p>isDeveloper= <%= user.isDeveloper %></p>
+                        <p>email= <%= user.email %></p>
+                        <p>title= <%= user.profile.title %></p>
+                        <p>location= <%= user.profile.locationPretty %></p>
+                        <p>website= <%= user.profile.website %></p>
+                        <p>producthunt= <%= user.profile.producthunt %></p>
+                        <p>twitter= <%= user.profile.twitter %></p>
+                        <p>mvpDays= <%= user.mvpSettings.days %></p>
+                        <p>mvpPrice= <%= user.mvpSettings.price %></p>
+                        <p>introduction= <%= user.profile.introduction %></p>
+                        <p>createdAt= <%= new Date(user.createdAt).toLocaleString() %></p>
+                        <p>updatedAt= <%= new Date(user.updatedAt).toLocaleString() %></p>
+                      </div>
+                      <div class="modal-footer">
+                        <div class="right-side">
+                          <button class="btn btn-default btn-link" data-dismiss="modal" type="button">Ok</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+              </tr>
+            <% }); %>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

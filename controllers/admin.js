@@ -92,3 +92,33 @@ exports.approveUser = async (req, res, next) => {
     });
   });
 };
+
+
+const getTechnicalUsers = () => {
+  return new Promise((resolve, reject) => {
+    User.find({
+      $or: [{ isDeveloper: true }],
+      $and: [
+        { 'profile.firstName': { $ne: null } },
+        { 'profile.lastName': { $ne: null } },
+        { 'profile.email': { $ne: null } },
+      ]
+    }).exec((err, users) => {
+      if (err) {
+        reject(err);
+      }
+
+      resolve(users);
+    });
+  });
+};
+
+exports.getDevelopers = async (req, res) => {
+  const users = await getTechnicalUsers();
+
+  res.render('developers', {
+    title: 'Developers',
+    fixedHeader: true,
+    users
+  });
+};

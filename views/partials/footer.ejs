@@ -1,49 +1,178 @@
 <footer class="footer section-dark">
-  <div class="container">
-    <div class="row">
-      <nav class="footer-nav">
-        <ul>
-          <li class="nav-item">
-            <a href="mvps" class="nav-link">MVPs</a>
-          </li>
-          <li>
-            <a href="/resources" >Resources</a>
-          </li>
-          <li>
-            <a href="https://medium.com/dusthq" target="_blank">Blog</a>
-          </li>
-          <li>
-            <a href="/about">About</a>
-          </li>
-          <li>
-            <a href="/help">Help</a>
-          </li>
-          <li>
-            <a href="/terms">Terms</a>
-          </li>
-          <li>
-            <a href="https://twitter.com/TheDustMakers" target="_blank" class="btn btn-neutral btn-just-icon btn-round btn-twitter twitter-sharrre">
-              <i class="fa fa-twitter" aria-hidden="true"></i>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <div class="credits ml-auto">
-        <span class="copyright">© 
+    <div class="container">
+        <div class="row">
+            <nav class="footer-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="mvps" class="nav-link">MVPs</a>
+                    </li>
+                    <li>
+                        <a href="/resources">Resources</a>
+                    </li>
+                    <li>
+                        <a href="https://medium.com/dusthq" target="_blank">Blog</a>
+                    </li>
+                    <li>
+                        <a href="/about">About</a>
+                    </li>
+                    <li>
+                        <a href="/help">Help</a>
+                    </li>
+                    <li>
+                        <a href="/terms">Terms</a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/TheDustMakers" target="_blank" class="btn btn-neutral btn-just-icon btn-round btn-twitter twitter-sharrre">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="credits ml-auto">
+                <span class="copyright">© 
         <script>
         document.write(new Date().getFullYear())
         </script>, made with <i class="fa fa-heart heart"></i> by Dust & Co., Inc.</span>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </footer>
 
 <style>
-  .footer .credits, .footer-nav {
-    line-height: 65px;
-  }
-
-  .footer nav > ul > li {
-    margin: 0 auto;
-  }
+    .footer .credits,
+    .footer-nav {
+        line-height: 65px;
+    }
+    
+    .footer nav>ul>li {
+        margin: 0 auto;
+    }
 </style>
+<div id="popup" style="display: block;"></div>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<style>
+    /* The snackbar - position it at the bottom and in the middle of the screen */
+    
+    #popup {
+        visibility: hidden;
+        /* Hidden by default. Visible on click */
+        max-width: 450px;
+        /* Set a default minimum width */
+        /* margin-left: -125px; Divide value of min-width by 2 */
+        background-color: #fff;
+        /* Black background color */
+        color: #000;
+        /* White text color */
+        text-align: center;
+        /* Centered text */
+        border: 1px solid #000;
+        border-radius: 10px;
+        /* Rounded borders */
+        padding: 16px;
+        /* Padding */
+        position: fixed;
+        /* Sit on top of the screen */
+        z-index: 1;
+        /* Add a z-index if needed */
+        right: 0%;
+        /* Center the snackbar */
+        bottom: 30px;
+        /* 30px from the bottom */
+    }
+    /* Show the snackbar when clicking on a button (class added with JavaScript) */
+    
+    #popup.show {
+        visibility: visible;
+        /* Show the snackbar */
+        /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
+ However, delay the fade out process for 2.5 seconds */
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 10s;
+        animation: fadein 0.5s, fadeout 0.5s 10s;
+    }
+    /* Animations to fade the snackbar in and out */
+    
+    @-webkit-keyframes fadein {
+        from {
+            bottom: 0;
+            opacity: 0;
+        }
+        to {
+            bottom: 30px;
+            opacity: 1;
+        }
+    }
+    
+    @keyframes fadein {
+        from {
+            bottom: 0;
+            opacity: 0;
+        }
+        to {
+            bottom: 30px;
+            opacity: 1;
+        }
+    }
+    
+    @-webkit-keyframes fadeout {
+        from {
+            bottom: 30px;
+            opacity: 1;
+        }
+        to {
+            bottom: 0;
+            opacity: 0;
+        }
+    }
+    
+    @keyframes fadeout {
+        from {
+            bottom: 30px;
+            opacity: 1;
+        }
+        to {
+            bottom: 0;
+            opacity: 0;
+        }
+    }
+</style>
+<script type="text/javascript">
+    function myFunction() {
+        // Get the snackbar DIV
+        var x = document.getElementById("popup");
+
+        // Add the "show" class to DIV
+        x.className = "show";
+
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function() {
+            x.className = x.className.replace("show", "");
+        }, 5000);
+    }
+    $.get('https://customer-crowd.herokuapp.com/api/v1/crowdlies/1', function(data) {
+                setInterval(function() {
+                            var randomNames = Math.floor(Math.random() * data.length);
+                            var row = data[randomNames];
+                            var name = row.name;
+                            var imageURL = "https://customer-crowd.herokuapp.com" + row.image.url;
+                            var bio = row.bio;
+                            var fb = row.facebook;
+                            var twitter = row.twitter;
+                            var instagram = row.instagram;
+                            var linkedin = row.linkedin;
+                            var review = row.review;
+                            myFunction();
+                            $("#popup").html(`
+              <div id="snackbar" >
+                <div style="width: 20%; float: left;">
+                  <img src="${imageURL}" class="img-responsive" style="border-radius: 50%; width: 100px;">
+                </div>
+                <div style="width: 80%; float: right;">
+                  <h4>${name}</h4>&nbsp;${fb != "" ? `<a href="${fb}"><i class="fa fa-facebook"></i></a>` : ''}${twitter != "" ? `<a href="${twitter}"><i class="fa fa-twitter"></i></a>` : ''}${instagram != "" ? `<a href="${instagram}"><i class="fa fa-instagram"></i></a>` : ''}${linkedin != "" ? `<a href="${linkedin}"><i class="fa fa-linkedin"></i></a>` : ''}<br/>
+                  <small>${bio}</small><br/><p><strong>${review}</strong></p>
+                </div>
+              </div>
+            ` );
+   }, 10000);
+ });
+</script>

@@ -1,55 +1,53 @@
 <% layout('layout') -%>
-<link href='/css/app.css?<%= hashCSSapp %>' rel='stylesheet' />
+    <link href='/css/app.css?<%= hashCSSapp %>' rel='stylesheet' />
 
-<% block('footer').append(scriptJSapp) %>
+    <% block('footer').append(scriptJSapp) %>
 
-<div class="about-header page-header page-header-small" style="background-image: url('/img/home_bg.jpg');">
-  <div class="filter filter-danger"></div>
-  <div class="content-center">
-    <div class="container">
-      <h1>Get your MVP built for less than<br/> 
-        <span class="red-text">
-          <strong>$700</strong>
-        </span> within 
-        <span class="red-text">
-          <strong>96 hours</strong>
-        </span>!
-      </h1>
-      <h5>Booking fee of $25</h5>
-      <p><small>*Limited space available.</small></p>
-      <blockquote>"If you are not embarrassed by the first version of your product, you’ve launched too late."</blockquote>
-    </div>
-  </div>
-</div>
-<div class="wrapper">
-  <div class="main about-us">
-    <div class="section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 offset-md-3">
-            <%- partial('partials/flash') %>
-            <% if (!user) { %>
-              <form class="register-form" method="POST" action="/founder/signup">
-                <input type="hidden" name="_csrf" value="<%- _csrf %>"/>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">First Name</label>
-                    <input name="firstName" type="text" class="form-control" id="exampleInputEmail1" placeholder="First Name" required="required">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Last Name</label>
-                    <input name="lastName" type="text" class="form-control" id="exampleInputEmail1" placeholder="Last Name" required="required">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Email</label>
-                    <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" required="required">
-                  </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">MVP Description</label>
-                  <textarea name="mvp_description" class="form-control" id="exampleInputEmail1" placeholder="MVP Description" required="required"></textarea>
+        <div class="about-header page-header page-header-small" style="background-image: url('/img/home.jpg');">
+            <div class="filter filter-danger"></div>
+            <div class="content-center">
+                <div class="container" style="text-align: center">
+                    <div style="width: 300px; margin: 0 auto; padding-top: 50px;">
+                        <img src="/dust_logo.png" alt="Dust" width="150px" />
+                    </div>
+                    <h1><strong>Launch your startup MVP super fast.</strong></h1><br><br>
+                    <h5>Dust is a much more affordable and much faster way to launch, iterate and grow your startup.<br> Our approach to builing MVPs saves you tens of thousands of dollars and months of<br> development work. Our mission is to build a future
+                        where the world can launch 10,000 startups <br> every day.</h5>
                 </div>
-                <div>
-                  <label for="exampleInputEmail1">Select Platforms You Want To Build For:</label>
-                  <select multiple class="form-control" id="exampleFormControlSelect2" name="platforms">
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="main about-us">
+                <div class="section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 offset-md-2" style="text-align: center;">
+                                <p>To book your MVP, please fill in the form below, and click the "Book your space" button to complete payment of the $25 booking fee.</p><br><br>
+                            </div>
+                            <div class="col-md-6 offset-md-3">
+                                <%- partial('partials/flash') %>
+                                    <% if (!user) { %>
+                                        <form class="register-form" method="POST" action="/founder/signup">
+                                            <input type="hidden" name="_csrf" value="<%- _csrf %>" />
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">First Name</label>
+                                                <input name="firstName" type="text" class="form-control" id="exampleInputEmail1" placeholder="First Name" required="required">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Last Name</label>
+                                                <input name="lastName" type="text" class="form-control" id="exampleInputEmail1" placeholder="Last Name" required="required">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Email</label>
+                                                <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" required="required">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">MVP Description</label>
+                                                <textarea name="mvp_description" class="form-control" id="exampleInputEmail1" placeholder="MVP Description" required="required"></textarea>
+                                            </div>
+                                            <div>
+                                                <label for="exampleInputEmail1">Select Platforms You Want To Build For:</label>
+                                                <select multiple class="form-control" id="exampleFormControlSelect2" name="platforms">
                     <option value="Web">Web</option>
                     <option value="Desktop">Desktop</option>
                     <option value="iOS">iOS</option>
@@ -57,28 +55,28 @@
                     <option value="Apple TV">Apple TV</option>
                     <option value="Apple Watch">Apple Watch</option>
                   </select>
-                </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Password</label>
-                    <input name="password" class="form-control" placeholder="Password" type="password" required="required">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Confirm Password</label>
-                    <input name="confirmPassword" class="form-control" placeholder="Password" type="password" required="required">
-                  </div>
-                <button type="submit" class="btn btn-danger" style="margin-top: 30px;">Book Your Space!</button>
-                <br>
-              </form>            
-            <% } else { %>
-              <form class="register-form" method="POST" action="/mvpsubmit">
-                <input type="hidden" name="_csrf" value="<%- _csrf %>"/>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">MVP Description</label>
-                  <textarea name="mvp_description" class="form-control" id="exampleInputEmail1" placeholder="MVP Description" required="required"></textarea>
-                </div>
-                <div>
-                  <label for="exampleInputEmail1">Select Platforms You Want To Build For:</label>
-                  <select multiple class="form-control" id="exampleFormControlSelect2" name="platforms">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Password</label>
+                                                <input name="password" class="form-control" placeholder="Password" type="password" required="required">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Confirm Password</label>
+                                                <input name="confirmPassword" class="form-control" placeholder="Password" type="password" required="required">
+                                            </div>
+                                            <button type="submit" class="btn btn-danger" style="margin-top: 30px;">Book Your Space!</button>
+                                            <br>
+                                        </form>
+                                        <% } else { %>
+                                            <form class="register-form" method="POST" action="/mvpsubmit">
+                                                <input type="hidden" name="_csrf" value="<%- _csrf %>" />
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">MVP Description</label>
+                                                    <textarea name="mvp_description" class="form-control" id="exampleInputEmail1" placeholder="MVP Description" required="required"></textarea>
+                                                </div>
+                                                <div>
+                                                    <label for="exampleInputEmail1">Select Platforms You Want To Build For:</label>
+                                                    <select multiple class="form-control" id="exampleFormControlSelect2" name="platforms">
                     <option value="Web">Web</option>
                     <option value="Desktop">Desktop</option>
                     <option value="iOS">iOS</option>
@@ -86,97 +84,107 @@
                     <option value="Apple TV">Apple TV</option>
                     <option value="Apple Watch">Apple Watch</option>
                   </select>
+                                                </div>
+                                                <button type="submit" class="btn btn-danger" style="margin-top: 30px;">Book Your Space!</button>
+                                                <br>
+                                            </form>
+                                            <% } %>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+                                <h3 class="modal-title" style="text-align: center; margin-bottom: 20px;">The Dust community has credentials from some of the finest institutions in the world.</h3>
+                                <div class="row">
+                                    <div class="col-md-2 offset-md-1">
+                                        <img src="/img/brands/1.png" width="100px"><br><br>
+                                        <img src="/img/brands/6.png" width="100px"><br><br>
+                                        <img src="/img/brands/11.png" width="100px"><br><br>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <img src="/img/brands/2.png" width="100px"><br><br>
+                                        <img src="/img/brands/7.png" width="100px"><br><br>
+                                        <img src="/img/brands/12.png" width="100px"><br><br>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <img src="/img/brands/3.png" width="100px"><br><br>
+                                        <img src="/img/brands/8.png" width="100px"><br><br>
+                                        <img src="/img/brands/13.png" width="100px"><br><br>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <img src="/img/brands/4.png" width="100px"><br><br>
+                                        <img src="/img/brands/9.png" width="100px"><br><br>
+                                        <img src="/img/brands/14.png" width="100px"><br><br>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <img src="/img/brands/5.png" width="100px"><br><br>
+                                        <img src="/img/brands/10.png" width="100px"><br><br>
+                                        <img src="/img/brands/15.png" width="100px"><br><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-danger" style="margin-top: 30px;">Book Your Space!</button>
-                <br>
-              </form> 
-            <% } %>
-          </div>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-md-10 offset-md-1">
-            <h3 class="modal-title" style="text-align: center; margin-bottom: 20px;">The Dust community has credentials from some of the finest institutions in the world.</h3>
-            <div class="row">
-              <div class="col-md-2 offset-md-1">
-                <img src="/img/brands/1.png" width="100px"><br><br>
-                <img src="/img/brands/6.png" width="100px"><br><br>
-                <img src="/img/brands/11.png" width="100px"><br><br>
-              </div>
-              <div class="col-md-2">
-                <img src="/img/brands/2.png" width="100px"><br><br>
-                <img src="/img/brands/7.png" width="100px"><br><br>
-                <img src="/img/brands/12.png" width="100px"><br><br>
-              </div>
-              <div class="col-md-2">
-                <img src="/img/brands/3.png" width="100px"><br><br>
-                <img src="/img/brands/8.png" width="100px"><br><br>
-                <img src="/img/brands/13.png" width="100px"><br><br>
-              </div>
-              <div class="col-md-2">
-                <img src="/img/brands/4.png" width="100px"><br><br>
-                <img src="/img/brands/9.png" width="100px"><br><br>
-                <img src="/img/brands/14.png" width="100px"><br><br>
-              </div>
-              <div class="col-md-2">
-                <img src="/img/brands/5.png" width="100px"><br><br>
-                <img src="/img/brands/10.png" width="100px"><br><br>
-                <img src="/img/brands/15.png" width="100px"><br><br>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" data-backdrop="static"  data-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-center" id="exampleModalLabel">Welcome!</h5>
-            </div>
-            <div class="modal-body">
-              Thanks for signing up to Dust. You’ll need to quickly complete your profile first. Please select one of the options below and we’ll take you straight to your profile.
-            </div>
-            <div class="modal-footer">
-                <div class="left-side">
-                    <button class="btn btn-default btn-link js-set-profile" data-isdev="true">I'm a developer</button>
-                </div>
-                <div class="divider"></div>
-                <div class="right-side">
-                    <button class="btn btn-success btn-link js-set-profile" data-isdev="false">I'm a non-technical founder</button>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center" id="exampleModalLabel">Welcome!</h5>
+                    </div>
+                    <div class="modal-body">
+                        Thanks for signing up to Dust. You’ll need to quickly complete your profile first. Please select one of the options below and we’ll take you straight to your profile.
+                    </div>
+                    <div class="modal-footer">
+                        <div class="left-side">
+                            <button class="btn btn-default btn-link js-set-profile" data-isdev="true">I'm a developer</button>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="right-side">
+                            <button class="btn btn-success btn-link js-set-profile" data-isdev="false">I'm a non-technical founder</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<div class="modal fade" id="js-unverified-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-center" id="exampleModalLabel">We're Reviewing Your Profile</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div class="modal fade" id="js-unverified-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center" id="exampleModalLabel">We're Reviewing Your Profile</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            </div>
-            <div class="modal-body">
-              We're reviewing your profile and once you're approved, you'll be able to start chatting.
-            </div>
-            <div class="modal-footer">
-                <div class="right-side">
-                    <button type="button" class="btn btn-default btn-link" data-dismiss="modal">OK</button>
+                    </div>
+                    <div class="modal-body">
+                        We're reviewing your profile and once you're approved, you'll be able to start chatting.
+                    </div>
+                    <div class="modal-footer">
+                        <div class="right-side">
+                            <button type="button" class="btn btn-default btn-link" data-dismiss="modal">OK</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<style type="text/css">
-  .product_view .modal-dialog{max-width: 800px; width: 100%;}
-  .pre-cost{text-decoration: line-through; color: #a5a5a5;}
-  .space-ten{padding: 10px 0;}
-</style>
+        <style type="text/css">
+            .product_view .modal-dialog {
+                max-width: 800px;
+                width: 100%;
+            }
+            
+            .pre-cost {
+                text-decoration: line-through;
+                color: #a5a5a5;
+            }
+            
+            .space-ten {
+                padding: 10px 0;
+            }
+        </style>
 
-<%- partial('partials/footer') %>
+        <%- partial('partials/footer') %>

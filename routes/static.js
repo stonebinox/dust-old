@@ -9,7 +9,7 @@ router.get('/about', staticController.about);
 router.get('/terms', staticController.terms);
 router.get('/featured_developers', staticController.featured_developers);
 router.get('/mvps', staticController.mvps);
-router.get('/help', staticController.help);
-router.get('/resources', staticController.resources);
+router.get('/education', staticController.education);
+router.get('/enterprise', staticController.enterprise);
 
 module.exports = router;

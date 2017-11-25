@@ -81,3 +81,7 @@ exports.enterprise = (req, res) => {
         fixedHeader: true
     });
 };
+
+exports.blog = (req, res) => {
+    res.redirect("http://blog.dusthq.com")
+}

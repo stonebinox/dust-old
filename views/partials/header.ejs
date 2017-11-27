@@ -1,4 +1,34 @@
-<nav class="navbar navbar-toggleable-md fixed-top <%- typeof fixedHeader !== 'undefined' ? '' : 'navbar-transparent' %>" <%- typeof animateNavbar==='undefined' ? '' : 'color-on-scroll="500"' %>>
+<div class="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">×</span>
+    <h5>Wherever you are in the world, if it's still Monday, our amazing Cyber Monday deals are still on! &nbsp; <a href="https://medium.com/dusthq/great-black-friday-deals-all-week-cbc654a2120c" target="_blank" class="btn btn-default">Learn more...</a></h5>
+</div>
+<style>
+    .alert {
+        padding: 20px;
+        background-color: #f44336;
+        /* Red */
+        color: white;
+        margin-bottom: 15px;
+    }
+    /* The close button */
+    
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    /* When moving the mouse over the close button */
+    
+    .closebtn:hover {
+        color: black;
+    }
+</style>
+<nav class="navbar navbar-toggleable-md <%- typeof fixedHeader !== 'undefined' ? '' : 'navbar-transparent' %>" <%- typeof animateNavbar==='undefined' ? '' : 'color-on-scroll="500"' %>>
     <div class="container">
         <div class="navbar-translate">
             <button aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right navbar-burger" data-target="#navbarToggler" data-toggle="collapse" type="button">

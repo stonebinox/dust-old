@@ -16,6 +16,6 @@ router.post('/founder/signup', userController.postFounderSignup);
 router.get('/dev/signup', userController.getDeveloperSignup);
 router.post('/dev/signup', userController.postDeveloperSignup);
 router.post('/mvpsubmit', userController.mvpform);
+router.post('/mvpbuild', userController.mvpbuild);
 
 module.exports = router;
-

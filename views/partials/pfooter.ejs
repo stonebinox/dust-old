@@ -1,0 +1,80 @@
+<footer class="footer section-dark">
+    <div class="container">
+        <div class="row">
+            <nav class="footer-nav">
+                <ul>
+                    <li>
+                        <a href="/education" class="nav-link">Education</a>
+                    </li>
+                    <li>
+                        <a href="/enterprise" class="nav-link">Enterprise</a>
+                    </li>
+                    <li>
+                        <a href="/blog">Blog</a>
+                    </li>
+                    <li>
+                        <a href="/about">About</a>
+                    </li>
+                    <li>
+                        <a href="/terms">Terms</a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/TheDustMakers" target="_blank" class="btn btn-neutral btn-just-icon btn-round btn-twitter twitter-sharrre">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.facebook.com/TheDustMakers" target="_blank" class="btn btn-neutral btn-just-icon btn-round btn-twitter twitter-sharrre">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.instagram.com/dusthq/" target="_blank" class="btn btn-neutral btn-just-icon btn-round btn-twitter twitter-sharrre">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="credits ml-auto">
+                <span class="copyright">© 
+        <script>
+        document.write(new Date().getFullYear())
+        </script>, made with <i class="fa fa-heart heart"></i> by Dust & Co., Inc.</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .footer .credits,
+    .footer-nav {
+        line-height: 65px;
+    }
+    
+    .footer nav>ul>li {
+        margin: 0 auto;
+    }
+</style>
+<script type="text/javascript">
+    // Get all elements with class="closebtn"
+    var close = document.getElementsByClassName("closebtn");
+    var i;
+
+    // Loop through all close buttons
+    for (i = 0; i < close.length; i++) {
+        // When someone clicks on a close button
+        close[i].onclick = function() {
+
+            // Get the parent of <span class="closebtn"> (<div class="alert">)
+            var div = this.parentElement;
+
+            // Set the opacity of div to 0 (transparent)
+            div.style.opacity = "0";
+
+            // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
+            setTimeout(function() {
+                div.style.display = "none";
+            }, 600);
+        }
+    }
+</script>

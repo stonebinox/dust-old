@@ -1,5 +1,8 @@
 const _ = require('lodash');
 const geoip = require('geoip-lite');
+const keyPublishable = process.env.PUBLISHABLE_KEY;
+const keySecret = process.env.SECRET_KEY;
+const stripe = require("stripe")(keySecret);
 
 exports.index = (req, res) => {
     res.render('index', {
@@ -85,3 +88,27 @@ exports.enterprise = (req, res) => {
 exports.blog = (req, res) => {
     res.redirect("http://blog.dusthq.com")
 }
+
+exports.getpay = (req, res) => {
+    res.render('pay', {
+        title: 'Pay',
+        keyPublishable
+    });
+};
+
+exports.postpay = (req, res, next) => {
+    let amount = 2500;
+
+    stripe.customers.create({
+            email: req.body.stripeEmail,
+            source: req.body.stripeToken
+        })
+        .then(customer =>
+            stripe.charges.create({
+                amount,
+                description: "Payment for MVP booking",
+                currency: "usd",
+                customer: customer.id
+            }))
+        .then(charge => res.render("charge"));
+};

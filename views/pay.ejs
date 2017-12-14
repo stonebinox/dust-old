@@ -1,0 +1,19 @@
+<% layout('layout') -%>
+
+    <% block('footer').append(scriptJSapp) %>
+        <%- partial('partials/header') %>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mr-auto text-center" style="margin-top: 25px; margin-bottom: 25px;">
+                        <form action="/charge" method="post">
+                            <input type="hidden" name="_csrf" value="<%- _csrf %>" />
+                            <article>
+                                <label>Amount: $25.00</label>
+                            </article>
+                            <script src="//checkout.stripe.com/v2/checkout.js" data-key="<%- keyPublishable %>" data-locale="auto" data-description="Sample Charge" data-amount="2500" class="stripe-button">
+                            </script>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <%- partial('partials/footer') %>

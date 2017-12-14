@@ -607,6 +607,6 @@ exports.mvpbuild = (req, res, next) => {
     });
     mvpbuild.save((err) => {
         if (err) { return next(err); }
-        res.redirect('http://paypal.me/paydusthq');
+        res.redirect('/pay');
     });
 };

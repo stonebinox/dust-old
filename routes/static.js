@@ -12,5 +12,7 @@ router.get('/featured_developers', staticController.featured_developers);
 router.get('/mvps', staticController.mvps);
 router.get('/education', staticController.education);
 router.get('/enterprise', staticController.enterprise);
+router.get('/pay', staticController.getpay);
+router.post('/charge', staticController.postpay);
 
 module.exports = router;

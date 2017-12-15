@@ -2,17 +2,19 @@
 
     <% block('footer').append(scriptJSapp) %>
         <%- partial('partials/header') %>
-            <div class="container" style="height: 73vh;">
-                <div class="row">
-                    <div class="col-md-12 mr-auto text-center" style="margin-top: 25px; margin-bottom: 25px;">
-                        <form action="/charge" method="post">
-                            <input type="hidden" name="_csrf" value="<%- _csrf %>" />
-                            <article>
-                                <label>Amount: $25.00</label>
-                            </article>
-                            <script src="//checkout.stripe.com/v2/checkout.js" data-key="<%- keyPublishable %>" data-locale="auto" data-description="DustHQ Booking" data-amount="2500" class="stripe-button">
-                            </script>
-                        </form>
+            <div style="background-color: #FFFFF1 !important;">
+                <div class="container" style="height: 73vh;">
+                    <div class="row">
+                        <div class="col-md-12 mr-auto text-center" style="margin-top: 25px; margin-bottom: 25px;">
+                            <form action="/charge" method="post">
+                                <input type="hidden" name="_csrf" value="<%- _csrf %>" />
+                                <article>
+                                    <label>Amount: $25.00</label>
+                                </article>
+                                <script src="//checkout.stripe.com/v2/checkout.js" data-key="<%- keyPublishable %>" data-locale="auto" data-description="DustHQ Booking" data-amount="2500" class="stripe-button">
+                                </script>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
